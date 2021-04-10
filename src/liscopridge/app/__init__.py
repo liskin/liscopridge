@@ -6,8 +6,8 @@ app = bottle.Bottle()
 app.mount('/statshunters/', statshunters.app)
 
 
-@app.route('/hello')
-@app.route('/hello/<name>')
+@app.get('/hello')
+@app.get('/hello/<name>')
 def hello(name='World'):
     form_name = bottle.request.params.get('name')
     bottle.response.content_type = 'text/plain; charset=UTF-8'
