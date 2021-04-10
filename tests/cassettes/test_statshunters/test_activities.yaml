@@ -1,0 +1,104 @@
+interactions:
+- request:
+    body:
+    headers:
+    method: GET
+    uri: https://www.statshunters.com/share/test/api/activities?page=1
+  response:
+    body:
+      string: |
+        {
+          "activities": [
+            {
+              "id": 123456, "foreignId": "123456", "user_id": 123456,
+              "name": "test1",
+              "gearId": null, "gearForeignId": null, "data_extra": null,
+              "lat": 52.01, "lng": 13.09,
+              "distance": 22014.9, "avg": 12.6252, "total_elevation_gain": 87.7,
+              "moving_time": 6278, "elapsed_time": 8970, "max_speed": 13,
+              "date": "2008-08-29 10:46:30", "timezone": "(GMT+01:00) Europe/Berlin",
+              "type": "InlineSkate",
+              "created_at": "2020-09-26 08:20:19", "updated_at": "2020-09-26 08:26:06",
+              "status": "badge_checked",
+              "utcDate": "2008-08-29 08:46:30",
+              "countries": [{"id": 357, "foreignId": 92, "name": "Germany"}],
+              "regions": [],
+              "tiles": [
+                {"x": 8783, "y": 5410},
+                {"x": 8783, "y": 5411},
+                {"x": 8783, "y": 5412},
+                {"x": 8784, "y": 5411},
+                {"x": 8784, "y": 5412},
+                {"x": 8785, "y": 5411},
+                {"x": 8785, "y": 5412},
+                {"x": 8786, "y": 5411},
+                {"x": 8787, "y": 5411}
+              ]
+            },
+            {
+              "id": 1234567,
+              "foreignId": "1234567",
+              "user_id": 123456,
+              "name": "test2",
+              "gearId": null, "gearForeignId": null, "data_extra": null,
+              "lat": 52.01, "lng": 13.09,
+              "distance": 35875.5, "avg": 13.5864, "total_elevation_gain": 89.8,
+              "moving_time": 9506, "elapsed_time": 14158, "max_speed": 14,
+              "date": "2008-08-30 11:03:52", "timezone": "(GMT+01:00) Europe/Berlin",
+              "type": "Ride",
+              "created_at": "2020-09-26 08:21:36", "updated_at": "2020-09-26 08:27:13",
+              "status": "badge_checked",
+              "utcDate": "2008-08-30 09:03:52",
+              "countries": [{"id": 357, "foreignId": 92, "name": "Germany"}],
+              "regions": [],
+              "tiles": [
+                {"x": 8787, "y": 5411},
+                {"x": 8788, "y": 5410},
+                {"x": 8788, "y": 5411},
+                {"x": 8789, "y": 5408},
+                {"x": 8789, "y": 5409},
+                {"x": 8789, "y": 5410},
+                {"x": 8789, "y": 5411},
+                {"x": 8790, "y": 5407},
+                {"x": 8790, "y": 5408},
+                {"x": 8791, "y": 5406},
+                {"x": 8791, "y": 5407},
+                {"x": 8791, "y": 5408},
+                {"x": 8792, "y": 5406},
+                {"x": 8792, "y": 5407},
+                {"x": 8793, "y": 5407}
+              ]
+            }
+          ],
+          "meta": {
+            "last_activity": 1618066875,
+            "limit": 500
+          }
+        }
+    headers:
+      Content-Type: application/json
+    status:
+      code: 200
+      message: OK
+- request:
+    body:
+    headers:
+    method: GET
+    uri: https://www.statshunters.com/share/test/api/activities?page=2
+  response:
+    body:
+      string: |
+        {
+          "activities": [
+          ],
+          "meta": {
+            "last_activity": 1618066875,
+            "limit": 500
+          }
+        }
+    headers:
+      Content-Type: application/json
+    status:
+      code: 200
+      message: OK
+version: 1

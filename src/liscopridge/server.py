@@ -1,5 +1,8 @@
 import argparse
 
+import bottle  # type: ignore [import]
+import pkg_resources
+
 from .app import app
 
 
@@ -18,6 +21,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+
+    bottle.TEMPLATE_PATH = [pkg_resources.resource_filename(__package__, "templates")]
     app.run(
         server='waitress',
         host=args.host,

@@ -1,6 +1,9 @@
 import bottle  # type: ignore [import]
 
+from . import statshunters
+
 app = bottle.Bottle()
+app.mount('/statshunters/', statshunters.app)
 
 
 @app.route('/hello')
