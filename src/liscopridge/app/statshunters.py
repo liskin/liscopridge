@@ -64,8 +64,8 @@ def kml_tiles(tiles: Set[Tile]) -> str:
     k = kml.KML(ns)
 
     style_normal = kml_styles.Style(id='normal', styles=[
-        kml_styles.LineStyle(color="ff0000ff", width=1),
-        kml_styles.PolyStyle(color="500000ff"),
+        kml_styles.LineStyle(color="400000ff", width=1),
+        kml_styles.PolyStyle(color="300000ff"),
     ])
 
     d = kml.Document(ns, name="explorer tiles", styles=[style_normal])
