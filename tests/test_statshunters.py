@@ -68,7 +68,7 @@ def test_route_tiles_kml():
     with boddle(params={'share_link': "https://www.statshunters.com/share/test"}):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Placemark", kml)) == 23
+        assert len(re.findall("<Placemark", kml)) == 20
 
 
 @pytest.mark.vcr
@@ -79,7 +79,7 @@ def test_route_tiles_kml_filter1():
     }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Placemark", kml)) == 15
+        assert len(re.findall("<Placemark", kml)) == 12
 
 
 @pytest.mark.vcr
@@ -90,7 +90,7 @@ def test_route_tiles_kml_filter2():
     }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Placemark", kml)) == 23
+        assert len(re.findall("<Placemark", kml)) == 20
 
 
 def test_route_tiles_net_kml():

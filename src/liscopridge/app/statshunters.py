@@ -71,8 +71,8 @@ def kml_tiles(tiles: Set[Tile]) -> str:
     d = kml.Document(ns, name="explorer tiles", styles=[style_normal])
     k.append(d)
 
-    for tile in tiles:
-        p = kml.Placemark(ns, styleUrl="#normal")
+    for tile in mercantile.simplify(tiles):
+        p = kml.Placemark(ns, id=mercantile.quadkey(tile), styleUrl="#normal")
         p.geometry = mercantile.feature(tile)['geometry']
         d.append(p)
 
