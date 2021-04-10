@@ -18,17 +18,17 @@ app = bottle.Bottle()
 
 
 def fetch_activities(share_uri: str) -> Iterator[dict]:
-    s = requests.Session()
     activities_uri = api_activities_uri(share_uri)
 
-    for page in count(1):
-        r = s.get(activities_uri, params={'page': page})
-        r.raise_for_status()
-        activities = r.json()
-        if activities['activities']:
-            yield from activities['activities']
-        else:
-            break
+    with requests.Session() as s:
+        for page in count(1):
+            r = s.get(activities_uri, params={'page': page})
+            r.raise_for_status()
+            activities = r.json()
+            if activities['activities']:
+                yield from activities['activities']
+            else:
+                break
 
 
 def share_uri_validate(share_uri: str) -> None:
