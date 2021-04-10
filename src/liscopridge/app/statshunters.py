@@ -10,6 +10,7 @@ from urllib.parse import urljoin
 
 import bottle  # type: ignore [import]
 from fastkml import kml  # type: ignore [import]
+from fastkml import styles as kml_styles  # type: ignore [import]
 import mercantile  # type: ignore [import]
 from mercantile import Tile  # type: ignore [import]
 import requests
@@ -62,11 +63,16 @@ def kml_tiles(tiles: Set[Tile]) -> str:
     ns = '{http://www.opengis.net/kml/2.2}'
     k = kml.KML(ns)
 
-    d = kml.Document(ns, name="explorer tiles")
+    style_normal = kml_styles.Style(id='normal', styles=[
+        kml_styles.LineStyle(color="ff0000ff", width=1),
+        kml_styles.PolyStyle(color="500000ff"),
+    ])
+
+    d = kml.Document(ns, name="explorer tiles", styles=[style_normal])
     k.append(d)
 
     for tile in tiles:
-        p = kml.Placemark(ns)
+        p = kml.Placemark(ns, styleUrl="#normal")
         p.geometry = mercantile.feature(tile)['geometry']
         d.append(p)
 
