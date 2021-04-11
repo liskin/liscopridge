@@ -3,56 +3,84 @@
 	<head>
 		<meta charset="utf-8">
 		<title>StatsHunters tiles.kml</title>
+
+		<link href="https://unpkg.com/sanitize.css" rel="stylesheet">
+		<link href="https://unpkg.com/sanitize.css/typography.css" rel="stylesheet">
+		<link href="https://unpkg.com/sanitize.css/forms.css" rel="stylesheet">
+
+		<style>
+			html {
+				background-color: #eee;
+				padding: 0 calc(50% - 25rem);
+			}
+
+			body {
+				background-color: #fff;
+				min-height: 100vh;
+				padding: 1rem;
+			}
+
+			form > div {
+				display: flex;
+				flex-direction: column;
+				margin: 2rem 0;
+			}
+		</style>
 	</head>
 
 	<body>
+		<h1>StatsHunters Explorer Tiles live KML</h1>
 		<form action="tiles-net.kml" method="post">
 			<div>
 				<label for="share_link">StatsHunters Heatmap <a href="https://www.statshunters.com/share">share link</a>:</label>
 				<input type="url" id="share_link" name="share_link" pattern="https://www.statshunters.com/share/\w+" required>
 			</div>
 			<div>
-				<label for="types">Activity types (select with Ctrl):</label>
-				<select id="types" name="types" multiple>
+				<label for="types">Activity types (de/select with Ctrl):</label>
+				<select id="types" name="types" multiple size="6">
 					<!-- source: https://developers.strava.com/swagger/activity_type.json -->
-					<option value="Ride" selected>Ride</option>
-					<option value="Run">Run</option>
-					<option value="Walk">Walk</option>
-					<option value="Hike">Hike</option>
+					<optgroup label="favourite">
+						<option value="Ride" selected>Ride</option>
+						<option value="Run">Run</option>
+						<option value="Walk">Walk</option>
+						<option value="Hike">Hike</option>
+					</optgroup>
 
-					<option value="AlpineSki">AlpineSki</option>
-					<option value="BackcountrySki">BackcountrySki</option>
-					<option value="Canoeing">Canoeing</option>
-					<option value="Crossfit">Crossfit</option>
-					<option value="EBikeRide">EBikeRide</option>
-					<option value="Elliptical">Elliptical</option>
-					<option value="Golf">Golf</option>
-					<option value="Handcycle">Handcycle</option>
-					<option value="IceSkate">IceSkate</option>
-					<option value="InlineSkate">InlineSkate</option>
-					<option value="Kayaking">Kayaking</option>
-					<option value="Kitesurf">Kitesurf</option>
-					<option value="NordicSki">NordicSki</option>
-					<option value="RockClimbing">RockClimbing</option>
-					<option value="RollerSki">RollerSki</option>
-					<option value="Rowing">Rowing</option>
-					<option value="Sail">Sail</option>
-					<option value="Skateboard">Skateboard</option>
-					<option value="Snowboard">Snowboard</option>
-					<option value="Snowshoe">Snowshoe</option>
-					<option value="Soccer">Soccer</option>
-					<option value="StairStepper">StairStepper</option>
-					<option value="StandUpPaddling">StandUpPaddling</option>
-					<option value="Surfing">Surfing</option>
-					<option value="Swim">Swim</option>
-					<option value="Velomobile">Velomobile</option>
-					<option value="VirtualRide">VirtualRide</option>
-					<option value="VirtualRun">VirtualRun</option>
-					<option value="WeightTraining">WeightTraining</option>
-					<option value="Wheelchair">Wheelchair</option>
-					<option value="Windsurf">Windsurf</option>
-					<option value="Workout">Workout</option>
-					<option value="Yoga">Yoga</option>
+					<optgroup label="other (alphabetical)">
+						<option value="AlpineSki">AlpineSki</option>
+						<option value="BackcountrySki">BackcountrySki</option>
+						<option value="Canoeing">Canoeing</option>
+						<option value="Crossfit">Crossfit</option>
+						<option value="EBikeRide">EBikeRide</option>
+						<option value="Elliptical">Elliptical</option>
+						<option value="Golf">Golf</option>
+						<option value="Handcycle">Handcycle</option>
+						<option value="IceSkate">IceSkate</option>
+						<option value="InlineSkate">InlineSkate</option>
+						<option value="Kayaking">Kayaking</option>
+						<option value="Kitesurf">Kitesurf</option>
+						<option value="NordicSki">NordicSki</option>
+						<option value="RockClimbing">RockClimbing</option>
+						<option value="RollerSki">RollerSki</option>
+						<option value="Rowing">Rowing</option>
+						<option value="Sail">Sail</option>
+						<option value="Skateboard">Skateboard</option>
+						<option value="Snowboard">Snowboard</option>
+						<option value="Snowshoe">Snowshoe</option>
+						<option value="Soccer">Soccer</option>
+						<option value="StairStepper">StairStepper</option>
+						<option value="StandUpPaddling">StandUpPaddling</option>
+						<option value="Surfing">Surfing</option>
+						<option value="Swim">Swim</option>
+						<option value="Velomobile">Velomobile</option>
+						<option value="VirtualRide">VirtualRide</option>
+						<option value="VirtualRun">VirtualRun</option>
+						<option value="WeightTraining">WeightTraining</option>
+						<option value="Wheelchair">Wheelchair</option>
+						<option value="Windsurf">Windsurf</option>
+						<option value="Workout">Workout</option>
+						<option value="Yoga">Yoga</option>
+					</optgroup>
 				</select>
 			</div>
 			<div>
