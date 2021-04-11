@@ -15,13 +15,15 @@ import mercantile  # type: ignore [import]
 from mercantile import Tile  # type: ignore [import]
 import requests
 
+from .. import cache
+
 app = bottle.Bottle()
 
 
 def fetch_activities(share_uri: str) -> Iterator[dict]:
     activities_uri = api_activities_uri(share_uri)
 
-    with requests.Session() as s:
+    with cache.CachedSession('statshunters', expire_after=900) as s:
         for page in count(1):
             r = s.get(activities_uri, params={'page': page})
             r.raise_for_status()
