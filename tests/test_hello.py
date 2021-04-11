@@ -3,18 +3,18 @@ import textwrap
 from boddle import boddle  # type: ignore [import]
 from webtest import TestApp  # type: ignore [import]
 
-from liscopridge import app
+from liscopridge.app import root
 
 
 def test_hello():
     with boddle():
-        assert app.hello() == "Hello World"
-        assert app.hello("Tom") == "Hello Tom"
+        assert root.hello() == "Hello World"
+        assert root.hello("Tom") == "Hello Tom"
 
     with boddle(params={'name': "Tom"}):
-        assert app.hello() == "Hello Tom"
+        assert root.hello() == "Hello Tom"
 
-    webapp = TestApp(app.app)
+    webapp = TestApp(root.app)
     assert str(webapp.get("/hello/Tom")) == textwrap.dedent("""
         Response: 200 OK
         Content-Type: text/plain; charset=UTF-8

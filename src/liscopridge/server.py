@@ -1,10 +1,7 @@
 import argparse
 import logging
 
-import bottle  # type: ignore [import]
-import pkg_resources
-
-from .app import app
+from .app.root import app
 
 
 def parse_args() -> argparse.Namespace:
@@ -28,14 +25,12 @@ def setup_logging(args: argparse.Namespace) -> None:
         logging.WARNING
     )
     logging.basicConfig(level=level)
-    logging.getLogger('waitress').setLevel(level)
 
 
 def main() -> None:
     args = parse_args()
     setup_logging(args)
 
-    bottle.TEMPLATE_PATH = [pkg_resources.resource_filename(__package__, "templates")]
     app.run(
         server='waitress',
         host=args.host,

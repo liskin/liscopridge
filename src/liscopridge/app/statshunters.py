@@ -13,15 +13,14 @@ from fastkml import kml  # type: ignore [import]
 from fastkml import styles as kml_styles  # type: ignore [import]
 import mercantile  # type: ignore [import]
 from mercantile import Tile  # type: ignore [import]
-import requests
 
 from .. import cache
 
 app = bottle.Bottle()
 
 
-def fetch_activities(share_uri: str) -> Iterator[dict]:
-    activities_uri = api_activities_uri(share_uri)
+def fetch_activities(share_link: str) -> Iterator[dict]:
+    activities_uri = api_activities_uri(share_link)
 
     with cache.CachedSession('statshunters', expire_after=900) as s:
         for page in count(1):
@@ -34,14 +33,14 @@ def fetch_activities(share_uri: str) -> Iterator[dict]:
                 break
 
 
-def share_uri_validate(share_uri: str) -> None:
-    if not re.fullmatch(r"https://www.statshunters.com/share/\w+", share_uri):
+def share_link_validate(share_link: str) -> None:
+    if not re.fullmatch(r"https://www.statshunters.com/share/\w+", share_link):
         bottle.abort(400, "malformed share uri")
 
 
-def api_activities_uri(share_uri: str) -> str:
-    share_uri_validate(share_uri)
-    return share_uri + "/api/activities"
+def api_activities_uri(share_link: str) -> str:
+    share_link_validate(share_link)
+    return share_link + "/api/activities"
 
 
 def filter_activities_type(activities: Iterable[dict], typ: Union[str, Set[str]]) -> Iterator[dict]:
@@ -137,7 +136,7 @@ def route_tiles_net_kml() -> str:
     share_link = bottle.request.params.get('share_link')
     if not isinstance(share_link, str):
         bottle.abort(400, "share_link query param required")
-    share_uri_validate(share_link)
+    share_link_validate(share_link)
 
     types = set(chain.from_iterable(
         t.split() for t in bottle.request.params.getall('types')
