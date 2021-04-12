@@ -87,12 +87,16 @@
 				</select>
 			</div>
 			<div>
-				<label for="simplify">Simplify:</label>
-				<input type="checkbox" id="simplify" name="simplify" checked>
+				<label for="simplify">Simplify (join tiles into larger (zoom - 1) tiles):</label>
+				<input type="checkbox" id="simplify" name="simplify">
 			</div>
 			<div>
-				<label for="union">Union:</label>
-				<input type="checkbox" id="union" name="union">
+				<label for="union">Union (join tiles into polygons):</label>
+				<input type="checkbox" id="union" name="union" checked>
+			</div>
+			<div>
+				<label for="holeless">Holeless (split polygons into simple polygons without holes for Locus):</label>
+				<input type="checkbox" id="holeless" name="holeless" checked>
 			</div>
 			<div>
 				<input type="submit" value="Get live KML">

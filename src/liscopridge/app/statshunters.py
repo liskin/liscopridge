@@ -15,12 +15,12 @@ from fastkml import kml  # type: ignore [import]
 from fastkml import styles as kml_styles  # type: ignore [import]
 import mercantile  # type: ignore [import]
 from mercantile import Tile  # type: ignore [import]
-import shapely  # type: ignore [import]
 import shapely.geometry  # type: ignore [import]
 import shapely.ops  # type: ignore [import]
 
 from .. import cache
 from ..hacks.fastkml import fix_shapely_GeometryCollection
+from ..util.geometry import polygon_split_holes
 
 fix_shapely_GeometryCollection()
 app = bottle.Bottle()
@@ -67,7 +67,12 @@ def get_tiles(activities: Iterable[dict]) -> Set[Tile]:
     return tiles
 
 
-def tiles_geometry(tiles: Set[Tile], simplify: bool = False, union: bool = False):
+def tiles_geometry(
+    tiles: Set[Tile],
+    simplify: bool = False,
+    union: bool = False,
+    holeless: bool = False,
+):
     if simplify:
         tiles = mercantile.simplify(tiles)
 
@@ -77,6 +82,8 @@ def tiles_geometry(tiles: Set[Tile], simplify: bool = False, union: bool = False
 
     if union:
         geometry = shapely.ops.unary_union(geometry)
+        if holeless:
+            geometry = polygon_split_holes(geometry)
 
     return geometry
 
@@ -86,8 +93,7 @@ def kml_tiles(geometry: dict) -> str:
     k = kml.KML(ns)
 
     style_normal = kml_styles.Style(id='normal', styles=[
-        kml_styles.LineStyle(color="400000ff", width=1),
-        kml_styles.PolyStyle(color="300000ff"),
+        kml_styles.PolyStyle(color="300000ff", outline=0),
     ])
 
     d = kml.Document(ns, name="explorer tiles", styles=[style_normal])
@@ -144,12 +150,13 @@ def route_tiles_kml() -> str:
 
     simplify = bottle.request.params.get('simplify') is not None
     union = bottle.request.params.get('union') is not None
+    holeless = bottle.request.params.get('holeless') is not None
 
     activities = fetch_activities(share_link)
     if types:
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
-    geometry = tiles_geometry(tiles, simplify=simplify, union=union)
+    geometry = tiles_geometry(tiles, simplify=simplify, union=union, holeless=holeless)
     kml = kml_tiles(geometry)
 
     bottle.response.content_type = 'application/vnd.google-earth.kml+xml'
@@ -169,6 +176,7 @@ def route_tiles_net_kml() -> str:
 
     simplify = bottle.request.params.get('simplify') is not None
     union = bottle.request.params.get('union') is not None
+    holeless = bottle.request.params.get('holeless') is not None
 
     params = {'share_link': share_link}
     if types:
@@ -177,6 +185,8 @@ def route_tiles_net_kml() -> str:
         params['simplify'] = simplify
     if union:
         params['union'] = union
+    if holeless:
+        params['holeless'] = holeless
     tiles_uri = urljoin(bottle.request.url, "tiles.kml?" + urlencode(params))
     kml = kml_netlink(tiles_uri)
 
@@ -201,14 +211,15 @@ def cli():
 @click.option('-t', '--types')
 @click.option('--simplify/--no-simplify', default=False)
 @click.option('--union/--no-union', default=False)
-def cli_tiles_geojson(share_link, output, types, simplify, union):
+@click.option('--holeless/--no-holeless', default=False)
+def cli_tiles_geojson(share_link, output, types, simplify, union, holeless):
     types = set(types.split() if types else [])
 
     activities = fetch_activities(share_link)
     if types:
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
-    geometry = tiles_geometry(tiles, simplify=simplify, union=union)
+    geometry = tiles_geometry(tiles, simplify=simplify, union=union, holeless=holeless)
     geojson = shapely.geometry.mapping(geometry)
 
     json.dump(geojson, output)
