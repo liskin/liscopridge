@@ -3,6 +3,7 @@ import textwrap
 
 from boddle import boddle  # type: ignore [import]
 import bottle  # type: ignore [import]
+from click.testing import CliRunner
 from mercantile import Tile  # type: ignore [import]
 import pytest
 
@@ -53,7 +54,7 @@ def test_kml_tiles():
         Tile(x=8783, y=5412, z=14),
     }
 
-    assert statshunters.kml_tiles(tiles) != ""
+    assert statshunters.kml_tiles(statshunters.tiles_geometry(tiles)) != ""
 
 
 def test_route_tiles_kml_error():
@@ -68,7 +69,7 @@ def test_route_tiles_kml():
     with boddle(params={'share_link': "https://www.statshunters.com/share/test"}):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Placemark", kml)) == 20
+        assert len(re.findall("<Polygon", kml)) == 20
 
 
 @pytest.mark.vcr
@@ -79,7 +80,7 @@ def test_route_tiles_kml_filter1():
     }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Placemark", kml)) == 12
+        assert len(re.findall("<Polygon", kml)) == 12
 
 
 @pytest.mark.vcr
@@ -90,7 +91,7 @@ def test_route_tiles_kml_filter2():
     }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Placemark", kml)) == 20
+        assert len(re.findall("<Polygon", kml)) == 20
 
 
 def test_route_tiles_net_kml():
@@ -119,3 +120,24 @@ def test_route_tiles_net_kml():
               </Document>
             </kml>
         """).lstrip("\n")
+
+
+@pytest.mark.vcr
+def test_cli_tiles_geojson():
+    res = CliRunner().invoke(statshunters.cli_tiles_geojson, ["https://www.statshunters.com/share/test"])
+    assert res.exit_code == 0
+    assert len(re.findall("Polygon", res.output)) == 23
+
+
+@pytest.mark.vcr
+def test_cli_tiles_geojson_simplify():
+    res = CliRunner().invoke(statshunters.cli_tiles_geojson, ["--simplify", "https://www.statshunters.com/share/test"])
+    assert res.exit_code == 0
+    assert len(re.findall("Polygon", res.output)) == 20
+
+
+@pytest.mark.vcr
+def test_cli_tiles_geojson_union():
+    res = CliRunner().invoke(statshunters.cli_tiles_geojson, ["--union", "https://www.statshunters.com/share/test"])
+    assert res.exit_code == 0
+    assert len(re.findall("Polygon", res.output)) == 1

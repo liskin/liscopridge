@@ -20,7 +20,9 @@ import shapely.geometry  # type: ignore [import]
 import shapely.ops  # type: ignore [import]
 
 from .. import cache
+from ..hacks.fastkml import fix_shapely_GeometryCollection
 
+fix_shapely_GeometryCollection()
 app = bottle.Bottle()
 
 
@@ -65,7 +67,21 @@ def get_tiles(activities: Iterable[dict]) -> Set[Tile]:
     return tiles
 
 
-def kml_tiles(tiles: Set[Tile]) -> str:
+def tiles_geometry(tiles: Set[Tile], simplify: bool = False, union: bool = False):
+    if simplify:
+        tiles = mercantile.simplify(tiles)
+
+    geometry = shapely.geometry.shape({'type': "GeometryCollection", 'geometries': [
+        mercantile.feature(tile)['geometry'] for tile in tiles
+    ]})
+
+    if union:
+        geometry = shapely.ops.unary_union(geometry)
+
+    return geometry
+
+
+def kml_tiles(geometry: dict) -> str:
     ns = '{http://www.opengis.net/kml/2.2}'
     k = kml.KML(ns)
 
@@ -77,10 +93,9 @@ def kml_tiles(tiles: Set[Tile]) -> str:
     d = kml.Document(ns, name="explorer tiles", styles=[style_normal])
     k.append(d)
 
-    for tile in mercantile.simplify(tiles):
-        p = kml.Placemark(ns, id=mercantile.quadkey(tile), styleUrl="#normal")
-        p.geometry = mercantile.feature(tile)['geometry']
-        d.append(p)
+    p = kml.Placemark(ns, styleUrl="#normal")
+    p.geometry = geometry
+    d.append(p)
 
     return k.to_string(prettyprint=True)
 
@@ -131,9 +146,11 @@ def route_tiles_kml() -> str:
     if types:
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
+    geometry = tiles_geometry(tiles, simplify=True)  # TODO: configurable
+    kml = kml_tiles(geometry)
 
     bottle.response.content_type = 'application/vnd.google-earth.kml+xml'
-    return kml_tiles(tiles)
+    return kml
 
 
 @app.post('/tiles-net.kml')
@@ -151,10 +168,11 @@ def route_tiles_net_kml() -> str:
     if types:
         params['types'] = ' '.join(sorted(types))
     tiles_uri = urljoin(bottle.request.url, "tiles.kml?" + urlencode(params))
+    kml = kml_netlink(tiles_uri)
 
     bottle.response.content_type = 'application/vnd.google-earth.kml+xml'
     bottle.response.set_header('content-disposition', 'attachment')
-    return kml_netlink(tiles_uri)
+    return kml
 
 
 @app.get('/')
@@ -180,18 +198,10 @@ def cli_tiles_geojson(share_link, output, types, simplify, union):
     if types:
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
+    geometry = tiles_geometry(tiles, simplify=simplify, union=union)
+    geojson = shapely.geometry.mapping(geometry)
 
-    if simplify:
-        tiles = mercantile.simplify(tiles)
-
-    geometry = {'type': "GeometryCollection", 'geometries': [
-        mercantile.feature(tile)['geometry'] for tile in tiles
-    ]}
-
-    if union:
-        geometry = shapely.geometry.mapping(shapely.ops.unary_union(shapely.geometry.shape(geometry)))
-
-    json.dump(geometry, output)
+    json.dump(geojson, output)
 
 
 if __name__ == "__main__":
