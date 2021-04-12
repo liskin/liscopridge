@@ -15,6 +15,9 @@ from fastkml import kml  # type: ignore [import]
 from fastkml import styles as kml_styles  # type: ignore [import]
 import mercantile  # type: ignore [import]
 from mercantile import Tile  # type: ignore [import]
+import shapely  # type: ignore [import]
+import shapely.geometry  # type: ignore [import]
+import shapely.ops  # type: ignore [import]
 
 from .. import cache
 
@@ -169,18 +172,26 @@ def cli():
 @click.option('-o', '--output', type=click.File('w'), default='-')
 @click.option('-t', '--types')
 @click.option('--simplify/--no-simplify', default=False)
-def cli_tiles_geojson(share_link, output, types, simplify):
+@click.option('--union/--no-union', default=False)
+def cli_tiles_geojson(share_link, output, types, simplify, union):
     types = set(types.split() if types else [])
 
     activities = fetch_activities(share_link)
     if types:
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
+
     if simplify:
         tiles = mercantile.simplify(tiles)
 
-    geojson = {'type': "FeatureCollection", 'features': [mercantile.feature(tile) for tile in tiles]}
-    json.dump(geojson, output)
+    geometry = {'type': "GeometryCollection", 'geometries': [
+        mercantile.feature(tile)['geometry'] for tile in tiles
+    ]}
+
+    if union:
+        geometry = shapely.geometry.mapping(shapely.ops.unary_union(shapely.geometry.shape(geometry)))
+
+    json.dump(geometry, output)
 
 
 if __name__ == "__main__":
