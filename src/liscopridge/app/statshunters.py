@@ -1,5 +1,6 @@
 from itertools import chain
 from itertools import count
+import json
 import re
 from typing import Iterable
 from typing import Iterator
@@ -9,6 +10,7 @@ from urllib.parse import urlencode
 from urllib.parse import urljoin
 
 import bottle  # type: ignore [import]
+import click
 from fastkml import kml  # type: ignore [import]
 from fastkml import styles as kml_styles  # type: ignore [import]
 import mercantile  # type: ignore [import]
@@ -155,3 +157,31 @@ def route_tiles_net_kml() -> str:
 @app.get('/')
 def route_root():
     return bottle.static_file('statshunters.html', root=bottle.TEMPLATE_PATH[0])
+
+
+@click.group()
+def cli():
+    pass
+
+
+@cli.command('tiles-geojson')
+@click.argument('share_link', required=True, type=str)
+@click.option('-o', '--output', type=click.File('w'), default='-')
+@click.option('-t', '--types')
+@click.option('--simplify/--no-simplify', default=False)
+def cli_tiles_geojson(share_link, output, types, simplify):
+    types = set(types.split() if types else [])
+
+    activities = fetch_activities(share_link)
+    if types:
+        activities = filter_activities_type(activities, types)
+    tiles = get_tiles(activities)
+    if simplify:
+        tiles = mercantile.simplify(tiles)
+
+    geojson = {'type': "FeatureCollection", 'features': [mercantile.feature(tile) for tile in tiles]}
+    json.dump(geojson, output)
+
+
+if __name__ == "__main__":
+    cli()
