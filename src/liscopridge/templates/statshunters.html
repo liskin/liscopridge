@@ -21,9 +21,12 @@
 			}
 
 			form > div {
+				margin: 1rem 0;
+			}
+
+			form > div.flex-column {
 				display: flex;
 				flex-direction: column;
-				margin: 2rem 0;
 			}
 		</style>
 	</head>
@@ -31,11 +34,11 @@
 	<body>
 		<h1>StatsHunters Explorer Tiles live KML</h1>
 		<form action="tiles-net.kml" method="post">
-			<div>
+			<div class="flex-column">
 				<label for="share_link">StatsHunters Heatmap <a href="https://www.statshunters.com/share">share link</a>:</label>
 				<input type="url" id="share_link" name="share_link" pattern="https://www.statshunters.com/share/\w+" required>
 			</div>
-			<div>
+			<div class="flex-column">
 				<label for="types">Activity types (de/select with Ctrl):</label>
 				<select id="types" name="types" multiple size="6">
 					<!-- source: https://developers.strava.com/swagger/activity_type.json -->
@@ -82,6 +85,14 @@
 						<option value="Yoga">Yoga</option>
 					</optgroup>
 				</select>
+			</div>
+			<div>
+				<label for="simplify">Simplify:</label>
+				<input type="checkbox" id="simplify" name="simplify" checked>
+			</div>
+			<div>
+				<label for="union">Union:</label>
+				<input type="checkbox" id="union" name="union">
 			</div>
 			<div>
 				<input type="submit" value="Get live KML">

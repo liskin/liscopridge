@@ -70,7 +70,7 @@ def test_route_tiles_kml():
     with boddle(params={'share_link': "https://www.statshunters.com/share/test"}):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Polygon", kml)) == 20
+        assert len(re.findall("<Polygon", kml)) == 23
 
 
 @pytest.mark.vcr
@@ -78,6 +78,7 @@ def test_route_tiles_kml_filter1():
     with boddle(params={
         'share_link': "https://www.statshunters.com/share/test",
         'types': 'Ride',
+        'simplify': '1',
     }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
@@ -89,6 +90,7 @@ def test_route_tiles_kml_filter2():
     with boddle(params={
         'share_link': "https://www.statshunters.com/share/test",
         'types': 'Ride InlineSkate',
+        'simplify': '1',
     }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")

@@ -142,11 +142,14 @@ def route_tiles_kml() -> str:
         t.split() for t in bottle.request.params.getall('types')
     ))
 
+    simplify = bottle.request.params.get('simplify') is not None
+    union = bottle.request.params.get('union') is not None
+
     activities = fetch_activities(share_link)
     if types:
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
-    geometry = tiles_geometry(tiles, simplify=True)  # TODO: configurable
+    geometry = tiles_geometry(tiles, simplify=simplify, union=union)
     kml = kml_tiles(geometry)
 
     bottle.response.content_type = 'application/vnd.google-earth.kml+xml'
@@ -164,9 +167,16 @@ def route_tiles_net_kml() -> str:
         t.split() for t in bottle.request.params.getall('types')
     ))
 
+    simplify = bottle.request.params.get('simplify') is not None
+    union = bottle.request.params.get('union') is not None
+
     params = {'share_link': share_link}
     if types:
         params['types'] = ' '.join(sorted(types))
+    if simplify:
+        params['simplify'] = simplify
+    if union:
+        params['union'] = union
     tiles_uri = urljoin(bottle.request.url, "tiles.kml?" + urlencode(params))
     kml = kml_netlink(tiles_uri)
 
