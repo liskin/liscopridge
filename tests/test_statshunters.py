@@ -6,6 +6,7 @@ import bottle  # type: ignore [import]
 from click.testing import CliRunner
 from mercantile import Tile  # type: ignore [import]
 import pytest
+from webtest import TestApp  # type: ignore [import]
 
 from liscopridge.app import statshunters
 
@@ -94,12 +95,14 @@ def test_route_tiles_kml_filter2():
         assert len(re.findall("<Polygon", kml)) == 20
 
 
-def test_route_tiles_net_kml():
+def test_route_tiles_net_kml_error():
     with pytest.raises(bottle.HTTPError) as e:
         with boddle():
             statshunters.route_tiles_net_kml()
     assert e.value.status.startswith('400')
 
+
+def test_route_tiles_net_kml():
     with boddle(params={
         'share_link': "https://www.statshunters.com/share/test",
         'types': 'Ride InlineSkate',
@@ -120,6 +123,11 @@ def test_route_tiles_net_kml():
               </Document>
             </kml>
         """).lstrip("\n")
+
+
+def test_route_root():
+    webapp = TestApp(statshunters.app)
+    assert webapp.get("/").body.startswith(b"<!DOCTYPE html>")
 
 
 @pytest.mark.vcr
