@@ -88,7 +88,7 @@ def tiles_geometry(
     return geometry
 
 
-def kml_tiles(geometry: dict) -> str:
+def kml_tiles(geometry) -> str:
     ns = '{http://www.opengis.net/kml/2.2}'
     k = kml.KML(ns)
 
@@ -205,14 +205,15 @@ def cli():
     pass
 
 
-@cli.command('tiles-geojson')
+@cli.command('tiles')
 @click.argument('share_link', required=True, type=str)
 @click.option('-o', '--output', type=click.File('w'), default='-')
+@click.option('-f', '--format', 'fmt', type=click.Choice(['kml', 'geojson']), default='geojson')
 @click.option('-t', '--types')
 @click.option('--simplify/--no-simplify', default=False)
 @click.option('--union/--no-union', default=False)
 @click.option('--holeless/--no-holeless', default=False)
-def cli_tiles_geojson(share_link, output, types, simplify, union, holeless):
+def cli_tiles(share_link, output, fmt, types, simplify, union, holeless):
     types = set(types.split() if types else [])
 
     activities = fetch_activities(share_link)
@@ -220,9 +221,12 @@ def cli_tiles_geojson(share_link, output, types, simplify, union, holeless):
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
     geometry = tiles_geometry(tiles, simplify=simplify, union=union, holeless=holeless)
-    geojson = shapely.geometry.mapping(geometry)
 
-    json.dump(geojson, output)
+    if fmt == 'geojson':
+        geojson = shapely.geometry.mapping(geometry)
+        json.dump(geojson, output)
+    elif fmt == 'kml':
+        output.write(kml_tiles(geometry))
 
 
 if __name__ == "__main__":

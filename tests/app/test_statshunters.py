@@ -133,21 +133,28 @@ def test_route_root():
 
 
 @pytest.mark.vcr
-def test_cli_tiles_geojson():
-    res = CliRunner().invoke(statshunters.cli_tiles_geojson, ["https://www.statshunters.com/share/test"])
+def test_cli_tiles():
+    res = CliRunner().invoke(statshunters.cli_tiles, ["https://www.statshunters.com/share/test"])
     assert res.exit_code == 0
-    assert len(re.findall("Polygon", res.output)) == 23
+    assert len(re.findall("\"Polygon", res.output)) == 23
 
 
 @pytest.mark.vcr
-def test_cli_tiles_geojson_simplify():
-    res = CliRunner().invoke(statshunters.cli_tiles_geojson, ["--simplify", "https://www.statshunters.com/share/test"])
+def test_cli_tiles_simplify():
+    res = CliRunner().invoke(statshunters.cli_tiles, ["--simplify", "https://www.statshunters.com/share/test"])
     assert res.exit_code == 0
-    assert len(re.findall("Polygon", res.output)) == 20
+    assert len(re.findall("\"Polygon", res.output)) == 20
 
 
 @pytest.mark.vcr
-def test_cli_tiles_geojson_union():
-    res = CliRunner().invoke(statshunters.cli_tiles_geojson, ["--union", "https://www.statshunters.com/share/test"])
+def test_cli_tiles_union():
+    res = CliRunner().invoke(statshunters.cli_tiles, ["--union", "https://www.statshunters.com/share/test"])
     assert res.exit_code == 0
-    assert len(re.findall("Polygon", res.output)) == 1
+    assert len(re.findall("\"Polygon", res.output)) == 1
+
+
+@pytest.mark.vcr
+def test_cli_tiles_kml():
+    res = CliRunner().invoke(statshunters.cli_tiles, ["-f", "kml", "https://www.statshunters.com/share/test"])
+    assert res.exit_code == 0
+    assert len(re.findall("<Polygon", res.output)) == 23
