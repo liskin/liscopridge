@@ -67,7 +67,10 @@ def test_route_tiles_kml_error():
 
 @pytest.mark.vcr
 def test_route_tiles_kml():
-    with boddle(params={'share_link': "https://www.statshunters.com/share/test"}):
+    with boddle(params={
+        'share_link': "https://www.statshunters.com/share/test",
+        'individual': "1",
+    }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
         assert len(re.findall("<Polygon", kml)) == 23
@@ -78,11 +81,11 @@ def test_route_tiles_kml_filter1():
     with boddle(params={
         'share_link': "https://www.statshunters.com/share/test",
         'types': 'Ride',
-        'simplify': '1',
+        'individual': "1",
     }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Polygon", kml)) == 12
+        assert len(re.findall("<Polygon", kml)) == 15
 
 
 @pytest.mark.vcr
@@ -90,11 +93,11 @@ def test_route_tiles_kml_filter2():
     with boddle(params={
         'share_link': "https://www.statshunters.com/share/test",
         'types': 'Ride InlineSkate',
-        'simplify': '1',
+        'individual': "1",
     }):
         kml = statshunters.route_tiles_kml()
         assert kml.startswith("<kml")
-        assert len(re.findall("<Polygon", kml)) == 20
+        assert len(re.findall("<Polygon", kml)) == 23
 
 
 def test_route_tiles_net_kml_error():
@@ -136,20 +139,6 @@ def test_route_root():
 def test_cli_tiles():
     res = CliRunner().invoke(statshunters.cli_tiles, ["https://www.statshunters.com/share/test"])
     assert res.exit_code == 0
-    assert len(re.findall("\"Polygon", res.output)) == 23
-
-
-@pytest.mark.vcr
-def test_cli_tiles_simplify():
-    res = CliRunner().invoke(statshunters.cli_tiles, ["--simplify", "https://www.statshunters.com/share/test"])
-    assert res.exit_code == 0
-    assert len(re.findall("\"Polygon", res.output)) == 20
-
-
-@pytest.mark.vcr
-def test_cli_tiles_union():
-    res = CliRunner().invoke(statshunters.cli_tiles, ["--union", "https://www.statshunters.com/share/test"])
-    assert res.exit_code == 0
     assert len(re.findall("\"Polygon", res.output)) == 1
 
 
@@ -157,7 +146,17 @@ def test_cli_tiles_union():
 def test_cli_tiles_kml():
     res = CliRunner().invoke(statshunters.cli_tiles, ["-f", "kml", "https://www.statshunters.com/share/test"])
     assert res.exit_code == 0
+    assert len(re.findall("<Polygon", res.output)) == 1
+    assert len(re.findall("<outline>0", res.output)) == 2
+
+
+@pytest.mark.vcr
+def test_cli_tiles_individual():
+    res = CliRunner().invoke(statshunters.cli_tiles, [
+        "--individual", "-f", "kml", "https://www.statshunters.com/share/test"])
+    assert res.exit_code == 0
     assert len(re.findall("<Polygon", res.output)) == 23
+    assert len(re.findall("<outline>1", res.output)) == 2
 
 
 def test_max_squares():
