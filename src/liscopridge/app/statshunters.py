@@ -68,7 +68,7 @@ def get_tiles(activities: Iterable[dict]) -> Set[Tile]:
     return tiles
 
 
-def max_square(tiles: Set[Tile]) -> Set[Tile]:
+def max_square(tiles: Set[Tile], no_overlap: bool = True) -> Set[Tile]:
     max_at: Dict[Tile, int] = {}
     for t in sorted(tiles):
         assert t.z == 14
@@ -89,7 +89,17 @@ def max_square(tiles: Set[Tile]) -> Set[Tile]:
         }
 
     max_sq = max(max_at.values(), default=None)
-    return {ts for t, sq in max_at.items() if sq == max_sq for ts in make_sq(t, sq)}
+    max_sq_tiles: Set[Tile] = set()
+    for t, sq in max_at.items():
+        if sq == max_sq:
+            if no_overlap:
+                one_larger = make_sq(t._replace(x=t.x + 1, y=t.y + 1), sq + 2)
+                if max_sq_tiles & one_larger:
+                    continue
+
+            max_sq_tiles |= make_sq(t, sq)
+
+    return max_sq_tiles
 
 
 def tiles_geometries(tiles: Set[Tile], individual: bool = False, max_sq: bool = False):

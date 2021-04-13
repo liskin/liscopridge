@@ -100,6 +100,17 @@ def test_route_tiles_kml_filter2():
         assert len(re.findall("<Polygon", kml)) == 23
 
 
+@pytest.mark.vcr
+def test_route_tiles_kml_maxsq():
+    with boddle(params={
+        'share_link': "https://www.statshunters.com/share/test",
+        'max_sq': "1",
+    }):
+        kml = statshunters.route_tiles_kml()
+        assert kml.startswith("<kml")
+        assert len(re.findall("<Polygon", kml)) == 7
+
+
 def test_route_tiles_net_kml_error():
     with pytest.raises(bottle.HTTPError) as e:
         with boddle():
@@ -182,6 +193,7 @@ def test_max_squares():
     }
     assert statshunters.max_square(t1) == t1
     assert statshunters.max_square(t1 | {Tile(x=2, y=3, z=14)}) == t1
-    assert statshunters.max_square(t1 | t2) == t1 | t2
-    assert statshunters.max_square(t1 - {Tile(x=1, y=1, z=14)}) == t1 - {Tile(x=1, y=1, z=14)}
-    assert statshunters.max_square(t1 | t3) == t1 | t3
+    assert statshunters.max_square(t1 | t2, no_overlap=True) == t1 | t2
+    assert statshunters.max_square(t1 - {Tile(x=1, y=1, z=14)}, no_overlap=False) == t1 - {Tile(x=1, y=1, z=14)}
+    assert statshunters.max_square(t1 | t3, no_overlap=False) == t1 | t3
+    assert statshunters.max_square(t1 | t3, no_overlap=True) == t1
