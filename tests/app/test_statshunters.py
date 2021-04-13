@@ -158,3 +158,31 @@ def test_cli_tiles_kml():
     res = CliRunner().invoke(statshunters.cli_tiles, ["-f", "kml", "https://www.statshunters.com/share/test"])
     assert res.exit_code == 0
     assert len(re.findall("<Polygon", res.output)) == 23
+
+
+def test_max_squares():
+    assert statshunters.max_square(set()) == set()
+
+    t1 = {
+        Tile(x=1, y=1, z=14),
+        Tile(x=1, y=2, z=14),
+        Tile(x=2, y=1, z=14),
+        Tile(x=2, y=2, z=14),
+    }
+    t2 = {
+        Tile(x=11, y=1, z=14),
+        Tile(x=11, y=2, z=14),
+        Tile(x=12, y=1, z=14),
+        Tile(x=12, y=2, z=14),
+    }
+    t3 = {
+        Tile(x=3, y=1, z=14),
+        Tile(x=3, y=2, z=14),
+        Tile(x=4, y=1, z=14),
+        Tile(x=4, y=2, z=14),
+    }
+    assert statshunters.max_square(t1) == t1
+    assert statshunters.max_square(t1 | {Tile(x=2, y=3, z=14)}) == t1
+    assert statshunters.max_square(t1 | t2) == t1 | t2
+    assert statshunters.max_square(t1 - {Tile(x=1, y=1, z=14)}) == t1 - {Tile(x=1, y=1, z=14)}
+    assert statshunters.max_square(t1 | t3) == t1 | t3

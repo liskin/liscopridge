@@ -2,6 +2,7 @@ from itertools import chain
 from itertools import count
 import json
 import re
+from typing import Dict
 from typing import Iterable
 from typing import Iterator
 from typing import Set
@@ -67,6 +68,42 @@ def get_tiles(activities: Iterable[dict]) -> Set[Tile]:
     return tiles
 
 
+def max_square(tiles: Set[Tile]) -> Set[Tile]:
+    max_at: Dict[Tile, int] = {}
+    for t in sorted(tiles):
+        assert t.z == 14
+        n1 = t._replace(x=t.x - 1)
+        n2 = t._replace(y=t.y - 1)
+        n3 = t._replace(x=t.x - 1, y=t.y - 1)
+        if all(n in max_at for n in (n1, n2, n3)):
+            sq = min(max_at[n] for n in (n1, n2, n3)) + 1
+        else:
+            sq = 1
+        max_at[t] = sq
+
+    def make_sq(t: Tile, sq: int) -> Set[Tile]:
+        return {
+            t._replace(x=x, y=y)
+            for x in range(t.x, t.x - sq, -1)
+            for y in range(t.y, t.y - sq, -1)
+        }
+
+    max_sq = max(max_at.values(), default=None)
+    return {ts for t, sq in max_at.items() if sq == max_sq for ts in make_sq(t, sq)}
+
+
+def tiles_geometries(tiles: Set[Tile], max_sq: bool = False, **kwargs):
+    if max_sq:
+        max_sq_tiles = max_square(tiles)
+        tiles -= max_sq_tiles
+        max_sq_geometry = tiles_geometry(max_sq_tiles, **kwargs)
+    else:
+        max_sq_geometry = None
+
+    geometry = tiles_geometry(tiles, **kwargs)
+    return geometry, max_sq_geometry
+
+
 def tiles_geometry(
     tiles: Set[Tile],
     simplify: bool = False,
@@ -88,20 +125,28 @@ def tiles_geometry(
     return geometry
 
 
-def kml_tiles(geometry) -> str:
+def kml_tiles(geometry, max_sq_geometry=None) -> str:
     ns = '{http://www.opengis.net/kml/2.2}'
     k = kml.KML(ns)
 
     style_normal = kml_styles.Style(id='normal', styles=[
         kml_styles.PolyStyle(color="300000ff", outline=0),
     ])
+    style_max_sq = kml_styles.Style(id='max_sq', styles=[
+        kml_styles.PolyStyle(color="30ff0000", outline=0),
+    ])
 
-    d = kml.Document(ns, name="explorer tiles", styles=[style_normal])
+    d = kml.Document(ns, name="explorer tiles", styles=[style_normal, style_max_sq])
     k.append(d)
 
     p = kml.Placemark(ns, styleUrl="#normal")
     p.geometry = geometry
     d.append(p)
+
+    if max_sq_geometry:
+        p = kml.Placemark(ns, styleUrl="#max_sq")
+        p.geometry = max_sq_geometry
+        d.append(p)
 
     return k.to_string(prettyprint=True)
 
@@ -151,13 +196,20 @@ def route_tiles_kml() -> str:
     simplify = bottle.request.params.get('simplify') is not None
     union = bottle.request.params.get('union') is not None
     holeless = bottle.request.params.get('holeless') is not None
+    max_sq = bottle.request.params.get('max_sq') is not None
 
     activities = fetch_activities(share_link)
     if types:
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
-    geometry = tiles_geometry(tiles, simplify=simplify, union=union, holeless=holeless)
-    kml = kml_tiles(geometry)
+    geometry, max_sq_geometry = tiles_geometries(
+        tiles,
+        simplify=simplify,
+        union=union,
+        holeless=holeless,
+        max_sq=max_sq,
+    )
+    kml = kml_tiles(geometry, max_sq_geometry)
 
     bottle.response.content_type = 'application/vnd.google-earth.kml+xml'
     return kml
@@ -177,6 +229,7 @@ def route_tiles_net_kml() -> str:
     simplify = bottle.request.params.get('simplify') is not None
     union = bottle.request.params.get('union') is not None
     holeless = bottle.request.params.get('holeless') is not None
+    max_sq = bottle.request.params.get('max_sq') is not None
 
     params = {'share_link': share_link}
     if types:
@@ -187,6 +240,8 @@ def route_tiles_net_kml() -> str:
         params['union'] = union
     if holeless:
         params['holeless'] = holeless
+    if max_sq:
+        params['max_sq'] = max_sq
     tiles_uri = urljoin(bottle.request.url, "tiles.kml?" + urlencode(params))
     kml = kml_netlink(tiles_uri)
 
@@ -213,20 +268,27 @@ def cli():
 @click.option('--simplify/--no-simplify', default=False)
 @click.option('--union/--no-union', default=False)
 @click.option('--holeless/--no-holeless', default=False)
-def cli_tiles(share_link, output, fmt, types, simplify, union, holeless):
+@click.option('--max-square/--no-max-square', 'max_sq', default=False)
+def cli_tiles(share_link, output, fmt, types, simplify, union, holeless, max_sq):
     types = set(types.split() if types else [])
 
     activities = fetch_activities(share_link)
     if types:
         activities = filter_activities_type(activities, types)
     tiles = get_tiles(activities)
-    geometry = tiles_geometry(tiles, simplify=simplify, union=union, holeless=holeless)
+    geometry, max_sq_geometry = tiles_geometries(
+        tiles,
+        simplify=simplify,
+        union=union,
+        holeless=holeless,
+        max_sq=max_sq,
+    )
 
     if fmt == 'geojson':
         geojson = shapely.geometry.mapping(geometry)
         json.dump(geojson, output)
     elif fmt == 'kml':
-        output.write(kml_tiles(geometry))
+        output.write(kml_tiles(geometry, max_sq_geometry))
 
 
 if __name__ == "__main__":
