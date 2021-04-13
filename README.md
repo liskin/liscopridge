@@ -2,3 +2,8 @@
 
 Random collection of various converters between REST, RSS, and other Internet
 "protocols" that make the Internet somewhat less horrible for me.
+
+## modules
+
+* [statshunters](src/liscopridge/app/statshunters.md) - KML with explorer tiles from
+  statshunters.com, to be used in e.g. Locus Map or Google Earth

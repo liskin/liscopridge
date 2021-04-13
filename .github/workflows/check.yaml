@@ -60,3 +60,5 @@ jobs:
       with:
         linters: pytest
         run: make test
+    - name: readme
+      run: make readme

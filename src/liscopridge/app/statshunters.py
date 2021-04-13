@@ -251,8 +251,14 @@ def cli():
 @click.option('-o', '--output', type=click.File('w'), default='-')
 @click.option('-f', '--format', 'fmt', type=click.Choice(['kml', 'geojson']), default='geojson')
 @click.option('-t', '--types')
-@click.option('--individual/--no-individual', default=False)
-@click.option('--max-square/--no-max-square', 'max_sq', default=False)
+@click.option(
+    '--individual/--no-individual', default=False,
+    help="Show invidual tiles with borders (makes Locus really slow but desktop Google Earth handles it fine)",
+)
+@click.option(
+    '--max-square/--no-max-square', 'max_sq', default=False,
+    help="Show max square(s)",
+)
 def cli_tiles(share_link, output, fmt, types, individual, max_sq):
     types = set(types.split() if types else [])
 

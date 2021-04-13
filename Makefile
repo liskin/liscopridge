@@ -21,7 +21,7 @@ pipx-site-packages:
 	pipx install --system-site-packages --editable .
 
 .PHONY: check
-check: lint test
+check: lint test readme
 
 .PHONY: lint
 lint: lint-flake8 lint-mypy lint-isort
@@ -44,6 +44,14 @@ lint-isort: $(VENV_DONE)
 test: $(VENV_DONE)
 	$(VENV_PYTHON) -m pytest $(PYTEST_FLAGS) tests/
 
+.PHONY: readme
+readme: $(wildcard README.md src/liscopridge/app/*.md)
+
+%.md: INTERACTIVE=$(shell [ -t 0 ] && echo --interactive)
+%.md: $(VENV_DONE) _phony
+	PATH="$(CURDIR)/$(VENV)/bin:$$PATH" \
+	$(VENV_PYTHON) -m cram --indent=4 $(INTERACTIVE) $@
+
 .PHONY: dist
 dist: $(VENV_DONE)
 	rm -rf dist/
@@ -61,3 +69,5 @@ $(VENV_DONE): $(MAKEFILE_LIST) setup.py setup.cfg pyproject.toml
 	$(PYTHON) -m venv --system-site-packages $(VENV)
 	$(VENV_PIP) install -e $(VENV_PIP_INSTALL)
 	touch $@
+
+.PHONY: _phony
