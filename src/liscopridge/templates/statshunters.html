@@ -20,11 +20,11 @@
 				padding: 1rem;
 			}
 
-			form > div {
+			form div {
 				margin: 1rem 0;
 			}
 
-			form > div.flex-column {
+			form div.flex-column {
 				display: flex;
 				flex-direction: column;
 			}
@@ -38,70 +38,76 @@
 				<label for="share_link">StatsHunters Heatmap <a href="https://www.statshunters.com/share">share link</a>:</label>
 				<input type="url" id="share_link" name="share_link" pattern="https://www.statshunters.com/share/\w+" required>
 			</div>
-			<div class="flex-column">
-				<label for="types">Activity types (de/select with Ctrl):</label>
-				<select id="types" name="types" multiple size="6">
-					<!-- source: https://developers.strava.com/swagger/activity_type.json -->
-					<optgroup label="favourite">
-						<option value="Ride" selected>Ride</option>
-						<option value="Run">Run</option>
-						<option value="Walk">Walk</option>
-						<option value="Hike">Hike</option>
-					</optgroup>
+			<details>
+				<summary>Filters (default is to show all activity types):</summary>
+				<div class="flex-column">
+					<label for="types">Activity types (de/select with Ctrl):</label>
+					<select id="types" name="types" multiple size="6">
+						<!-- source: https://developers.strava.com/swagger/activity_type.json -->
+						<optgroup label="favourite">
+							<option value="Ride">Ride</option>
+							<option value="Run">Run</option>
+							<option value="Walk">Walk</option>
+							<option value="Hike">Hike</option>
+						</optgroup>
 
-					<optgroup label="other (alphabetical)">
-						<option value="AlpineSki">AlpineSki</option>
-						<option value="BackcountrySki">BackcountrySki</option>
-						<option value="Canoeing">Canoeing</option>
-						<option value="Crossfit">Crossfit</option>
-						<option value="EBikeRide">EBikeRide</option>
-						<option value="Elliptical">Elliptical</option>
-						<option value="Golf">Golf</option>
-						<option value="Handcycle">Handcycle</option>
-						<option value="IceSkate">IceSkate</option>
-						<option value="InlineSkate">InlineSkate</option>
-						<option value="Kayaking">Kayaking</option>
-						<option value="Kitesurf">Kitesurf</option>
-						<option value="NordicSki">NordicSki</option>
-						<option value="RockClimbing">RockClimbing</option>
-						<option value="RollerSki">RollerSki</option>
-						<option value="Rowing">Rowing</option>
-						<option value="Sail">Sail</option>
-						<option value="Skateboard">Skateboard</option>
-						<option value="Snowboard">Snowboard</option>
-						<option value="Snowshoe">Snowshoe</option>
-						<option value="Soccer">Soccer</option>
-						<option value="StairStepper">StairStepper</option>
-						<option value="StandUpPaddling">StandUpPaddling</option>
-						<option value="Surfing">Surfing</option>
-						<option value="Swim">Swim</option>
-						<option value="Velomobile">Velomobile</option>
-						<option value="VirtualRide">VirtualRide</option>
-						<option value="VirtualRun">VirtualRun</option>
-						<option value="WeightTraining">WeightTraining</option>
-						<option value="Wheelchair">Wheelchair</option>
-						<option value="Windsurf">Windsurf</option>
-						<option value="Workout">Workout</option>
-						<option value="Yoga">Yoga</option>
-					</optgroup>
-				</select>
-			</div>
-			<div>
-				<label for="simplify">Simplify (join tiles into larger (zoom - 1) tiles):</label>
-				<input type="checkbox" id="simplify" name="simplify">
-			</div>
-			<div>
-				<label for="union">Union (join tiles into polygons):</label>
-				<input type="checkbox" id="union" name="union" checked>
-			</div>
-			<div>
-				<label for="holeless">Holeless (split polygons into simple polygons without holes for Locus):</label>
-				<input type="checkbox" id="holeless" name="holeless" checked>
-			</div>
-			<div>
-				<label for="max_sq">Show max square(s):</label>
-				<input type="checkbox" id="max_sq" name="max_sq" checked>
-			</div>
+						<optgroup label="other (alphabetical)">
+							<option value="AlpineSki">AlpineSki</option>
+							<option value="BackcountrySki">BackcountrySki</option>
+							<option value="Canoeing">Canoeing</option>
+							<option value="Crossfit">Crossfit</option>
+							<option value="EBikeRide">EBikeRide</option>
+							<option value="Elliptical">Elliptical</option>
+							<option value="Golf">Golf</option>
+							<option value="Handcycle">Handcycle</option>
+							<option value="IceSkate">IceSkate</option>
+							<option value="InlineSkate">InlineSkate</option>
+							<option value="Kayaking">Kayaking</option>
+							<option value="Kitesurf">Kitesurf</option>
+							<option value="NordicSki">NordicSki</option>
+							<option value="RockClimbing">RockClimbing</option>
+							<option value="RollerSki">RollerSki</option>
+							<option value="Rowing">Rowing</option>
+							<option value="Sail">Sail</option>
+							<option value="Skateboard">Skateboard</option>
+							<option value="Snowboard">Snowboard</option>
+							<option value="Snowshoe">Snowshoe</option>
+							<option value="Soccer">Soccer</option>
+							<option value="StairStepper">StairStepper</option>
+							<option value="StandUpPaddling">StandUpPaddling</option>
+							<option value="Surfing">Surfing</option>
+							<option value="Swim">Swim</option>
+							<option value="Velomobile">Velomobile</option>
+							<option value="VirtualRide">VirtualRide</option>
+							<option value="VirtualRun">VirtualRun</option>
+							<option value="WeightTraining">WeightTraining</option>
+							<option value="Wheelchair">Wheelchair</option>
+							<option value="Windsurf">Windsurf</option>
+							<option value="Workout">Workout</option>
+							<option value="Yoga">Yoga</option>
+						</optgroup>
+					</select>
+				</div>
+			</details>
+			<details>
+				<summary>Advanced options (defaults are fine for <a href="https://www.locusmap.app/">Locus Map</a>):</summary>
+				<div>
+					<label for="simplify">Simplify (join tiles into larger (zoom - 1) tiles):</label>
+					<input type="checkbox" id="simplify" name="simplify">
+				</div>
+				<div>
+					<label for="union">Union (join tiles into polygons):</label>
+					<input type="checkbox" id="union" name="union" checked>
+				</div>
+				<div>
+					<label for="holeless">Holeless (split polygons into simple polygons without holes for Locus):</label>
+					<input type="checkbox" id="holeless" name="holeless" checked>
+				</div>
+				<div>
+					<label for="max_sq">Show max square(s):</label>
+					<input type="checkbox" id="max_sq" name="max_sq" checked>
+				</div>
+			</details>
 			<div>
 				<input type="submit" value="Get live KML">
 			</div>
