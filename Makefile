@@ -6,9 +6,6 @@ VENV_PYTHON = $(VENV)/bin/python
 VENV_DONE = $(VENV)/.done
 VENV_PIP_INSTALL = '.[dev, test]'
 
-PACKAGE_SCRIPT = 'from configparser import RawConfigParser; p = RawConfigParser(); p.read("setup.cfg"); print(p["metadata"]["name"]);'
-PACKAGE = $(shell $(PYTHON) -c $(PACKAGE_SCRIPT))
-
 .PHONY: venv
 venv: $(VENV_DONE)
 
@@ -26,7 +23,7 @@ check: lint test readme
 .PHONY: lint
 lint: lint-flake8 lint-mypy lint-isort
 
-LINT_SOURCES = $(wildcard *.py) tests/
+LINT_SOURCES = src/ tests/
 
 .PHONY: lint-flake8
 lint-flake8: $(VENV_DONE)
