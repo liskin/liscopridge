@@ -42,7 +42,7 @@ test: $(VENV_DONE)
 	$(VENV_PYTHON) -m pytest $(PYTEST_FLAGS) tests/
 
 .PHONY: readme
-readme: $(wildcard README.md src/liscopridge/app/*.md)
+readme: README.md $(wildcard src/liscopridge/app/*.md)
 
 %.md: INTERACTIVE=$(shell [ -t 0 ] && echo --interactive)
 %.md: $(VENV_DONE) _phony
