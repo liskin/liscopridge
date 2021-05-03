@@ -5,7 +5,7 @@ from boddle import boddle  # type: ignore [import]
 import bottle  # type: ignore [import]
 from click.testing import CliRunner
 from mercantile import Tile  # type: ignore [import]
-import pytest
+import pytest  # type: ignore [import]
 from webtest import TestApp  # type: ignore [import]
 
 from liscopridge.app import statshunters
