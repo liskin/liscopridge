@@ -13,7 +13,7 @@ def requests_cache_filename(subname: str) -> str:
     return str(cache_dir / subname)
 
 
-def CachedSession(subname: str, **kwargs) -> requests_cache.CachedSession:
+def CachedSession(subname: str, **kwargs) -> requests.Session:
     if _pytest:
         return requests.Session()
     else:
