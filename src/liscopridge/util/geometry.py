@@ -18,7 +18,7 @@ def polygon_vertical_split(p, cut_x):
 
 def polygon_split_holes(p):
     if hasattr(p, 'geoms'):
-        return polygon_concat(polygon_split_holes(q) for q in p)
+        return polygon_concat(polygon_split_holes(q) for q in p.geoms)
     elif p.type == 'Polygon' and p.interiors:
         cut_x = p.interiors[0].centroid.x
         return polygon_split_holes(polygon_vertical_split(p, cut_x))
