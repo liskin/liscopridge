@@ -8,7 +8,7 @@ def polygon_concat(ps):
 
 
 def polygon_vertical_split(p, cut_x):
-    assert p.type == 'Polygon'
+    assert p.geom_type == 'Polygon'
 
     min_x, min_y, max_x, max_y = p.bounds
     assert min_x < cut_x < max_x
@@ -19,7 +19,7 @@ def polygon_vertical_split(p, cut_x):
 def polygon_split_holes(p):
     if hasattr(p, 'geoms'):
         return polygon_concat(polygon_split_holes(q) for q in p.geoms)
-    elif p.type == 'Polygon' and p.interiors:
+    elif p.geom_type == 'Polygon' and p.interiors:
         cut_x = p.interiors[0].centroid.x
         return polygon_split_holes(polygon_vertical_split(p, cut_x))
     else:
