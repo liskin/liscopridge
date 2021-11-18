@@ -118,6 +118,7 @@ jobs:
               -e python3-requests \
               -e python3-requests-cache \
               -e python3-shapely \
+              -e python3-typeshed \
               -e python3-vcr \
               -e python3-venv \
               -e python3-waitress \
