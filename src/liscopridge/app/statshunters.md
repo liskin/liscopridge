@@ -12,7 +12,7 @@ Or use the command-line interface:
 ## CLI usage
 
     $ python3 -m liscopridge.app.statshunters tiles --help
-    Usage: statshunters.py tiles [OPTIONS] SHARE_LINK
+    Usage: python -m liscopridge.app.statshunters tiles [OPTIONS] SHARE_LINK
     
     Options:
       -o, --output FILENAME
@@ -21,6 +21,5 @@ Or use the command-line interface:
       --individual / --no-individual  Show invidual tiles with borders (makes
                                       Locus really slow but desktop Google Earth
                                       handles it fine)
-    
       --max-square / --no-max-square  Show max square(s)
       --help                          Show this message and exit.
