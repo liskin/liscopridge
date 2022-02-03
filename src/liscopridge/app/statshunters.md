@@ -11,8 +11,8 @@ Or use the command-line interface:
 
 ## CLI usage
 
-    $ python3 -m liscopridge.app.statshunters tiles --help
-    Usage: python -m liscopridge.app.statshunters tiles [OPTIONS] SHARE_LINK
+    $ liscopridge-cli statshunters tiles --help
+    Usage: liscopridge-cli statshunters tiles [OPTIONS] SHARE_LINK
     
     Options:
       -o, --output FILENAME
