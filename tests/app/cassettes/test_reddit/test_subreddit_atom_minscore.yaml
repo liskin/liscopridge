@@ -1,0 +1,587 @@
+interactions:
+- request:
+    body:
+    headers:
+    method: GET
+    uri: https://www.reddit.com/r/thinkpad/top/.rss?limit=100&sort=top&t=week
+  response:
+    body:
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+          <category term="thinkpad" label="r/thinkpad"/>
+          <updated>2022-02-03T16:18:22+00:00</updated>
+          <icon>https://www.redditstatic.com/icon.png/</icon>
+          <id>/r/thinkpad/top/.rss?limit=100&amp;sort=top&amp;t=week</id>
+          <link rel="self" href="https://www.reddit.com/r/thinkpad/top/.rss?limit=100&amp;sort=top&amp;t=week" type="application/atom+xml"/>
+          <link rel="alternate" href="https://www.reddit.com/r/thinkpad/top/?limit=100&amp;sort=top&amp;t=week" type="text/html"/>
+          <subtitle>IBM and Lenovo ThinkPad laptop enthusiasts!</subtitle>
+          <title>top scoring links : thinkpad</title>
+          <entry>
+            <author>
+              <name>/u/KasaneTeto_</name>
+              <uri>https://www.reddit.com/user/KasaneTeto_</uri>
+            </author>
+            <category term="thinkpad" label="r/thinkpad"/>
+            <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href="https://www.reddit.com/r/thinkpad/comments/shueto/_/"&gt; &lt;img src="https://external-preview.redd.it/-XnT_QOg_xRjL0ExwxMehUbcpxqatMTrFROnHIzeqrg.png?width=640&amp;amp;crop=smart&amp;amp;auto=webp&amp;amp;s=81cbc8b066e051688cfb83003aebee8dc4048055" alt="." title="." /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32; submitted by &amp;#32; &lt;a href="https://www.reddit.com/user/KasaneTeto_"&gt; /u/KasaneTeto_ &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href="https://v.redd.it/cqjfu406z7f81"&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href="https://www.reddit.com/r/thinkpad/comments/shueto/_/"&gt;[comments]&lt;/a&gt;&lt;/span&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</content>
+            <id>t3_shueto</id>
+            <media:thumbnail url="https://external-preview.redd.it/-XnT_QOg_xRjL0ExwxMehUbcpxqatMTrFROnHIzeqrg.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=81cbc8b066e051688cfb83003aebee8dc4048055"/>
+            <link href="https://www.reddit.com/r/thinkpad/comments/shueto/_/"/>
+            <updated>2022-02-01T13:00:44+00:00</updated>
+            <published>2022-02-01T13:00:44+00:00</published>
+            <title>.</title>
+          </entry>
+          <entry>
+            <author>
+              <name>/u/Rocketkt69</name>
+              <uri>https://www.reddit.com/user/Rocketkt69</uri>
+            </author>
+            <category term="thinkpad" label="r/thinkpad"/>
+            <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href="https://www.reddit.com/r/thinkpad/comments/sfef2f/the_fact_that_the_x230_can_play_csgo_at_60fps_on/"&gt; &lt;img src="https://preview.redd.it/g6szryspgle81.jpg?width=640&amp;amp;crop=smart&amp;amp;auto=webp&amp;amp;s=e4256143f2a5fcb06e3157adab182b4efce9a3d0" alt="The fact that the x230 can play CS:GO at 60fps on decent settings is almost disgusting. Long live the x230." title="The fact that the x230 can play CS:GO at 60fps on decent settings is almost disgusting. Long live the x230." /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32; submitted by &amp;#32; &lt;a href="https://www.reddit.com/user/Rocketkt69"&gt; /u/Rocketkt69 &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href="https://i.redd.it/g6szryspgle81.jpg"&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href="https://www.reddit.com/r/thinkpad/comments/sfef2f/the_fact_that_the_x230_can_play_csgo_at_60fps_on/"&gt;[comments]&lt;/a&gt;&lt;/span&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</content>
+            <id>t3_sfef2f</id>
+            <media:thumbnail url="https://preview.redd.it/g6szryspgle81.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=e4256143f2a5fcb06e3157adab182b4efce9a3d0"/>
+            <link href="https://www.reddit.com/r/thinkpad/comments/sfef2f/the_fact_that_the_x230_can_play_csgo_at_60fps_on/"/>
+            <updated>2022-01-29T09:17:34+00:00</updated>
+            <published>2022-01-29T09:17:34+00:00</published>
+            <title>The fact that the x230 can play CS:GO at 60fps on decent settings is almost disgusting. Long live the x230.</title>
+          </entry>
+          <entry>
+            <author>
+              <name>/u/JJD-010903</name>
+              <uri>https://www.reddit.com/user/JJD-010903</uri>
+            </author>
+            <category term="thinkpad" label="r/thinkpad"/>
+            <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href="https://www.reddit.com/r/thinkpad/comments/sfkomk/l13_yoga_capslockight_stays_on_and_trackpoint/"&gt; &lt;img src="https://external-preview.redd.it/ImJmETHUVzIupJaa58qUbKjUZJpcAzq3b_CFDEMBfbY.png?width=640&amp;amp;crop=smart&amp;amp;auto=webp&amp;amp;s=c05a4142f95e7d9595e68137a8042558d442202a" alt="L13 YOGA capslockight stays on and trackpoint buttons dont work...." title="L13 YOGA capslockight stays on and trackpoint buttons dont work...." /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32; submitted by &amp;#32; &lt;a href="https://www.reddit.com/user/JJD-010903"&gt; /u/JJD-010903 &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href="https://v.redd.it/vd4qeokbdne81"&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href="https://www.reddit.com/r/thinkpad/comments/sfkomk/l13_yoga_capslockight_stays_on_and_trackpoint/"&gt;[comments]&lt;/a&gt;&lt;/span&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</content>
+            <id>t3_sfkomk</id>
+            <media:thumbnail url="https://external-preview.redd.it/ImJmETHUVzIupJaa58qUbKjUZJpcAzq3b_CFDEMBfbY.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=c05a4142f95e7d9595e68137a8042558d442202a"/>
+            <link href="https://www.reddit.com/r/thinkpad/comments/sfkomk/l13_yoga_capslockight_stays_on_and_trackpoint/"/>
+            <updated>2022-01-29T15:43:26+00:00</updated>
+            <published>2022-01-29T15:43:26+00:00</published>
+            <title>L13 YOGA capslockight stays on and trackpoint buttons dont work....</title>
+          </entry>
+          <entry>
+            <author>
+              <name>/u/t3chn3rd86</name>
+              <uri>https://www.reddit.com/user/t3chn3rd86</uri>
+            </author>
+            <category term="thinkpad" label="r/thinkpad"/>
+            <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class="md"&gt;&lt;p&gt;I don&amp;#39;t Iike to buy computers brand new...I rather buy something used, put a little money into a few small upgrades, and roll with it. &lt;/p&gt; &lt;p&gt;I really love my ThinkPad T510 that I&amp;#39;ve upgraded to 8GB RAM and a 512 SSD, but it&amp;#39;s not going to support Windows 11, and I want to use the new OS, and want something a bit smaller in size.&lt;/p&gt; &lt;p&gt;Whats the oldest ThinkPad out there that will natively support Windows 11? &lt;/p&gt; &lt;p&gt;I&amp;#39;ll also be putting my current ThinkPad on the market for sale, if anyone is interested (not sure if sales are allowed here, if not I&amp;#39;ll promptly edit this)&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href="https://www.reddit.com/user/t3chn3rd86"&gt; /u/t3chn3rd86 &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href="https://www.reddit.com/r/thinkpad/comments/sf696u/whats_the_best_used_thinkpad_for_windows_11/"&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href="https://www.reddit.com/r/thinkpad/comments/sf696u/whats_the_best_used_thinkpad_for_windows_11/"&gt;[comments]&lt;/a&gt;&lt;/span&gt;</content>
+            <id>t3_sf696u</id>
+            <link href="https://www.reddit.com/r/thinkpad/comments/sf696u/whats_the_best_used_thinkpad_for_windows_11/"/>
+            <updated>2022-01-29T01:19:33+00:00</updated>
+            <published>2022-01-29T01:19:33+00:00</published>
+            <title>Whats the best used ThinkPad for Windows 11?</title>
+          </entry>
+          <entry>
+            <author>
+              <name>/u/alexislopez000</name>
+              <uri>https://www.reddit.com/user/alexislopez000</uri>
+            </author>
+            <category term="thinkpad" label="r/thinkpad"/>
+            <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class="md"&gt;&lt;p&gt;Hello, I just bought a refurbished T470 from Best Buy. I’ll be using it to connect remotely to my work desktop and also for my last semester of college. What antivirus do you all recommend? I’m seeing recommendations for Windows Defender but the posts are a bit old. Is that still a good one? Or should I install something like the Kaspersky antivirus? I have a MacBook Air and have never had any problems with it and have been so afraid of buying a PC. I’m not big on tech and am only switching bc my work’s IT dept can’t figure out how to get my Mac to remote connect to my desktop, they say it’s impossible without it crashing and freezing multiple times a day. I just want to make sure I’m keeping the new(old) laptop safe and in good working condition. TIA&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href="https://www.reddit.com/user/alexislopez000"&gt; /u/alexislopez000 &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href="https://www.reddit.com/r/thinkpad/comments/sewu49/refurbished_t470_antivirus/"&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href="https://www.reddit.com/r/thinkpad/comments/sewu49/refurbished_t470_antivirus/"&gt;[comments]&lt;/a&gt;&lt;/span&gt;</content>
+            <id>t3_sewu49</id>
+            <link href="https://www.reddit.com/r/thinkpad/comments/sewu49/refurbished_t470_antivirus/"/>
+            <updated>2022-01-28T18:09:37+00:00</updated>
+            <published>2022-01-28T18:09:37+00:00</published>
+            <title>Refurbished T470 - Antivirus?</title>
+          </entry>
+        </feed>
+    headers:
+      Content-Type: "application/atom+xml; charset=UTF-8"
+    status:
+      code: 200
+      message: OK
+- request:
+    body:
+    headers:
+    method: GET
+    uri: https://www.reddit.com/r/thinkpad/top.json?limit=100&raw_json=1&sort=top&t=week
+  response:
+    body:
+      string: |
+        {
+          "kind": "Listing",
+          "data": {
+            "after": "t3_sewu49",
+            "dist": 100,
+            "modhash": "",
+            "geo_filter": "",
+            "children": [
+              {
+                "kind": "t3",
+                "data": {
+                  "approved_at_utc": null,
+                  "subreddit": "thinkpad",
+                  "selftext": "",
+                  "author_fullname": "t2_f1jdkkwe",
+                  "saved": false,
+                  "mod_reason_title": null,
+                  "gilded": 0,
+                  "clicked": false,
+                  "title": ".",
+                  "link_flair_richtext": [
+                    {
+                      "e": "text",
+                      "t": "Discussion / Information"
+                    }
+                  ],
+                  "subreddit_name_prefixed": "r/thinkpad",
+                  "hidden": false,
+                  "pwls": 6,
+                  "link_flair_css_class": "",
+                  "downs": 0,
+                  "thumbnail_height": 105,
+                  "top_awarded_type": null,
+                  "hide_score": false,
+                  "name": "t3_shueto",
+                  "quarantine": false,
+                  "link_flair_text_color": "light",
+                  "upvote_ratio": 0.98,
+                  "author_flair_background_color": null,
+                  "ups": 367,
+                  "total_awards_received": 0,
+                  "media_embed": {},
+                  "thumbnail_width": 140,
+                  "author_flair_template_id": null,
+                  "is_original_content": false,
+                  "user_reports": [],
+                  "secure_media": {
+                    "reddit_video": {
+                      "bitrate_kbps": 1200,
+                      "fallback_url": "https://v.redd.it/cqjfu406z7f81/DASH_480.mp4?source=fallback",
+                      "height": 480,
+                      "width": 640,
+                      "scrubber_media_url": "https://v.redd.it/cqjfu406z7f81/DASH_96.mp4",
+                      "dash_url": "https://v.redd.it/cqjfu406z7f81/DASHPlaylist.mpd?a=1646496969%2CYTM3NmI5OGI3NDE5ZWM0YmEyY2E1MzRmZmUzMDQ0N2YzOGYzYmQ1ZWU4MzBiODI5ZDFlZjA4ZGNhZGViYzg4OQ%3D%3D&v=1&f=sd",
+                      "duration": 14,
+                      "hls_url": "https://v.redd.it/cqjfu406z7f81/HLSPlaylist.m3u8?a=1646496969%2CODYxM2Q5MGM0ODZmYTg0YmU3MTE1YmUxNTQxMWFlYjVlMjM3NjQ2YzcyYzg2MzM3NmUyOTc2ZTE0ZDI0MzkzOA%3D%3D&v=1&f=sd",
+                      "is_gif": false,
+                      "transcoding_status": "completed"
+                    }
+                  },
+                  "is_reddit_media_domain": true,
+                  "is_meta": false,
+                  "category": null,
+                  "secure_media_embed": {},
+                  "link_flair_text": "Discussion / Information",
+                  "can_mod_post": false,
+                  "score": 367,
+                  "approved_by": null,
+                  "is_created_from_ads_ui": false,
+                  "author_premium": true,
+                  "thumbnail": "https://b.thumbs.redditmedia.com/E--Lk9lyZ2m-IqpYCyeyTsjOEz7NqGKG4RuWjQBGIIk.jpg",
+                  "edited": false,
+                  "author_flair_css_class": null,
+                  "author_flair_richtext": [],
+                  "gildings": {},
+                  "post_hint": "hosted:video",
+                  "content_categories": null,
+                  "is_self": false,
+                  "subreddit_type": "public",
+                  "created": 1643720444,
+                  "link_flair_type": "richtext",
+                  "wls": 6,
+                  "removed_by_category": null,
+                  "banned_by": null,
+                  "author_flair_type": "text",
+                  "domain": "v.redd.it",
+                  "allow_live_comments": false,
+                  "selftext_html": null,
+                  "likes": null,
+                  "suggested_sort": null,
+                  "banned_at_utc": null,
+                  "url_overridden_by_dest": "https://v.redd.it/cqjfu406z7f81",
+                  "view_count": null,
+                  "archived": false,
+                  "no_follow": false,
+                  "is_crosspostable": false,
+                  "pinned": false,
+                  "over_18": false,
+                  "preview": {
+                    "images": [
+                      {
+                        "source": {
+                          "url": "https://external-preview.redd.it/-XnT_QOg_xRjL0ExwxMehUbcpxqatMTrFROnHIzeqrg.png?format=pjpg&auto=webp&s=faf1be39b9136b2d24ccd001b28a6c4f2cddd3dc",
+                          "width": 640,
+                          "height": 480
+                        },
+                        "resolutions": [
+                          {
+                            "url": "https://external-preview.redd.it/-XnT_QOg_xRjL0ExwxMehUbcpxqatMTrFROnHIzeqrg.png?width=108&crop=smart&format=pjpg&auto=webp&s=e1aa4a6568dcc3f16e04f1f44a059947eae09b51",
+                            "width": 108,
+                            "height": 81
+                          },
+                          {
+                            "url": "https://external-preview.redd.it/-XnT_QOg_xRjL0ExwxMehUbcpxqatMTrFROnHIzeqrg.png?width=216&crop=smart&format=pjpg&auto=webp&s=8c5707d1976472db94742189971252ba2d5622f9",
+                            "width": 216,
+                            "height": 162
+                          },
+                          {
+                            "url": "https://external-preview.redd.it/-XnT_QOg_xRjL0ExwxMehUbcpxqatMTrFROnHIzeqrg.png?width=320&crop=smart&format=pjpg&auto=webp&s=f300e1bfaecbf07745553a6aaad096a5de3215d8",
+                            "width": 320,
+                            "height": 240
+                          },
+                          {
+                            "url": "https://external-preview.redd.it/-XnT_QOg_xRjL0ExwxMehUbcpxqatMTrFROnHIzeqrg.png?width=640&crop=smart&format=pjpg&auto=webp&s=779d4f2c607c4b58ec1ff49e890aad8a2fc14a9a",
+                            "width": 640,
+                            "height": 480
+                          }
+                        ],
+                        "variants": {},
+                        "id": "UbUtsuTqg_GKfec_ittDaeq3GGAx1ucELbS0KmI-0yg"
+                      }
+                    ],
+                    "enabled": false
+                  },
+                  "all_awardings": [],
+                  "awarders": [],
+                  "media_only": false,
+                  "link_flair_template_id": "7e7d1ad4-c9ab-11e9-8705-0e13733b2e58",
+                  "can_gild": false,
+                  "spoiler": false,
+                  "locked": false,
+                  "author_flair_text": null,
+                  "treatment_tags": [],
+                  "visited": false,
+                  "removed_by": null,
+                  "mod_note": null,
+                  "distinguished": null,
+                  "subreddit_id": "t5_2qvhj",
+                  "author_is_blocked": false,
+                  "mod_reason_by": null,
+                  "num_reports": null,
+                  "removal_reason": null,
+                  "link_flair_background_color": "#0dd3bb",
+                  "id": "shueto",
+                  "is_robot_indexable": true,
+                  "report_reasons": null,
+                  "author": "KasaneTeto_",
+                  "discussion_type": null,
+                  "num_comments": 14,
+                  "send_replies": true,
+                  "whitelist_status": "all_ads",
+                  "contest_mode": false,
+                  "mod_reports": [],
+                  "author_patreon_flair": false,
+                  "author_flair_text_color": null,
+                  "permalink": "/r/thinkpad/comments/shueto/_/",
+                  "parent_whitelist_status": "all_ads",
+                  "stickied": false,
+                  "url": "https://v.redd.it/cqjfu406z7f81",
+                  "subreddit_subscribers": 134703,
+                  "created_utc": 1643720444,
+                  "num_crossposts": 0,
+                  "media": {
+                    "reddit_video": {
+                      "bitrate_kbps": 1200,
+                      "fallback_url": "https://v.redd.it/cqjfu406z7f81/DASH_480.mp4?source=fallback",
+                      "height": 480,
+                      "width": 640,
+                      "scrubber_media_url": "https://v.redd.it/cqjfu406z7f81/DASH_96.mp4",
+                      "dash_url": "https://v.redd.it/cqjfu406z7f81/DASHPlaylist.mpd?a=1646496969%2CYTM3NmI5OGI3NDE5ZWM0YmEyY2E1MzRmZmUzMDQ0N2YzOGYzYmQ1ZWU4MzBiODI5ZDFlZjA4ZGNhZGViYzg4OQ%3D%3D&v=1&f=sd",
+                      "duration": 14,
+                      "hls_url": "https://v.redd.it/cqjfu406z7f81/HLSPlaylist.m3u8?a=1646496969%2CODYxM2Q5MGM0ODZmYTg0YmU3MTE1YmUxNTQxMWFlYjVlMjM3NjQ2YzcyYzg2MzM3NmUyOTc2ZTE0ZDI0MzkzOA%3D%3D&v=1&f=sd",
+                      "is_gif": false,
+                      "transcoding_status": "completed"
+                    }
+                  },
+                  "is_video": true
+                }
+              },
+              {
+                "kind": "t3",
+                "data": {
+                  "approved_at_utc": null,
+                  "subreddit": "thinkpad",
+                  "selftext": "",
+                  "author_fullname": "t2_7pnqhawo",
+                  "saved": false,
+                  "mod_reason_title": null,
+                  "gilded": 0,
+                  "clicked": false,
+                  "title": "The fact that the x230 can play CS:GO at 60fps on decent settings is almost disgusting. Long live the x230.",
+                  "link_flair_richtext": [
+                    {
+                      "e": "text",
+                      "t": "Thinkstagram Picture"
+                    }
+                  ],
+                  "subreddit_name_prefixed": "r/thinkpad",
+                  "hidden": false,
+                  "pwls": 6,
+                  "link_flair_css_class": "",
+                  "downs": 0,
+                  "thumbnail_height": 140,
+                  "top_awarded_type": null,
+                  "hide_score": false,
+                  "name": "t3_sfef2f",
+                  "quarantine": false,
+                  "link_flair_text_color": "light",
+                  "upvote_ratio": 0.98,
+                  "author_flair_background_color": null,
+                  "ups": 364,
+                  "total_awards_received": 0,
+                  "media_embed": {},
+                  "thumbnail_width": 140,
+                  "author_flair_template_id": "23c7f996-973f-11e3-b980-12313d27e9a3",
+                  "is_original_content": false,
+                  "user_reports": [],
+                  "secure_media": null,
+                  "is_reddit_media_domain": true,
+                  "is_meta": false,
+                  "category": null,
+                  "secure_media_embed": {},
+                  "link_flair_text": "Thinkstagram Picture",
+                  "can_mod_post": false,
+                  "score": 364,
+                  "approved_by": null,
+                  "is_created_from_ads_ui": false,
+                  "author_premium": false,
+                  "thumbnail": "https://b.thumbs.redditmedia.com/69zb4I71KFtVndxZok4kMufX9KJFlowXRKxTil2YTBo.jpg",
+                  "edited": false,
+                  "author_flair_css_class": "none",
+                  "author_flair_richtext": [
+                    {
+                      "e": "text",
+                      "t": "..."
+                    }
+                  ],
+                  "gildings": {},
+                  "post_hint": "image",
+                  "content_categories": null,
+                  "is_self": false,
+                  "subreddit_type": "public",
+                  "created": 1643447854,
+                  "link_flair_type": "richtext",
+                  "wls": 6,
+                  "removed_by_category": null,
+                  "banned_by": null,
+                  "author_flair_type": "richtext",
+                  "domain": "i.redd.it",
+                  "allow_live_comments": false,
+                  "selftext_html": null,
+                  "likes": null,
+                  "suggested_sort": null,
+                  "banned_at_utc": null,
+                  "url_overridden_by_dest": "https://i.redd.it/g6szryspgle81.jpg",
+                  "view_count": null,
+                  "archived": false,
+                  "no_follow": false,
+                  "is_crosspostable": false,
+                  "pinned": false,
+                  "over_18": false,
+                  "preview": {
+                    "images": [
+                      {
+                        "source": {
+                          "url": "https://preview.redd.it/g6szryspgle81.jpg?auto=webp&s=f543aec09f2c6f18367217f3b7d26dfeb731d91a",
+                          "width": 3468,
+                          "height": 4624
+                        },
+                        "resolutions": [
+                          {
+                            "url": "https://preview.redd.it/g6szryspgle81.jpg?width=108&crop=smart&auto=webp&s=ad0131338561f261d6749b7f0c95e3b36aa71e24",
+                            "width": 108,
+                            "height": 144
+                          },
+                          {
+                            "url": "https://preview.redd.it/g6szryspgle81.jpg?width=216&crop=smart&auto=webp&s=bf69143b54770b73db2451368e42a8a5d32c0d8d",
+                            "width": 216,
+                            "height": 288
+                          },
+                          {
+                            "url": "https://preview.redd.it/g6szryspgle81.jpg?width=320&crop=smart&auto=webp&s=d8ab00521ce864adb7794bdf9b9e64712b7b9174",
+                            "width": 320,
+                            "height": 426
+                          },
+                          {
+                            "url": "https://preview.redd.it/g6szryspgle81.jpg?width=640&crop=smart&auto=webp&s=e4256143f2a5fcb06e3157adab182b4efce9a3d0",
+                            "width": 640,
+                            "height": 853
+                          },
+                          {
+                            "url": "https://preview.redd.it/g6szryspgle81.jpg?width=960&crop=smart&auto=webp&s=78467e48dc4b9f746b7fda04ac18174e3d4b293d",
+                            "width": 960,
+                            "height": 1280
+                          },
+                          {
+                            "url": "https://preview.redd.it/g6szryspgle81.jpg?width=1080&crop=smart&auto=webp&s=d6f31cbd256e733e19a94a413ef854f07d21852d",
+                            "width": 1080,
+                            "height": 1440
+                          }
+                        ],
+                        "variants": {},
+                        "id": "OPbQ1rqkpJF3XXsYtyifESHSMklB424jjWOINa3mr8c"
+                      }
+                    ],
+                    "enabled": true
+                  },
+                  "all_awardings": [],
+                  "awarders": [],
+                  "media_only": false,
+                  "link_flair_template_id": "695d27ac-c9ab-11e9-92d1-0ecfcdbba10e",
+                  "can_gild": false,
+                  "spoiler": false,
+                  "locked": false,
+                  "author_flair_text": "...",
+                  "treatment_tags": [],
+                  "visited": false,
+                  "removed_by": null,
+                  "mod_note": null,
+                  "distinguished": null,
+                  "subreddit_id": "t5_2qvhj",
+                  "author_is_blocked": false,
+                  "mod_reason_by": null,
+                  "num_reports": null,
+                  "removal_reason": null,
+                  "link_flair_background_color": "#ffb000",
+                  "id": "sfef2f",
+                  "is_robot_indexable": true,
+                  "report_reasons": null,
+                  "author": "Rocketkt69",
+                  "discussion_type": null,
+                  "num_comments": 69,
+                  "send_replies": true,
+                  "whitelist_status": "all_ads",
+                  "contest_mode": false,
+                  "mod_reports": [],
+                  "author_patreon_flair": false,
+                  "author_flair_text_color": "dark",
+                  "permalink": "/r/thinkpad/comments/sfef2f/the_fact_that_the_x230_can_play_csgo_at_60fps_on/",
+                  "parent_whitelist_status": "all_ads",
+                  "stickied": false,
+                  "url": "https://i.redd.it/g6szryspgle81.jpg",
+                  "subreddit_subscribers": 134703,
+                  "created_utc": 1643447854,
+                  "num_crossposts": 0,
+                  "media": null,
+                  "is_video": false
+                }
+              },
+              {
+                "kind": "t3",
+                "data": {
+                  "approved_at_utc": null,
+                  "subreddit": "thinkpad",
+                  "selftext": "Hello, I just bought a refurbished T470 from Best Buy. I’ll be using it to connect remotely to my work desktop and also for my last semester of college. What antivirus do you all recommend? I’m seeing recommendations for Windows Defender but the posts are a bit old. Is that still a good one? Or should I install something like the Kaspersky antivirus? I have a MacBook Air and have never had any problems with it and have been so afraid of buying a PC. I’m not big on tech and am only switching bc my work’s IT dept can’t figure out how to get my Mac to remote connect to my desktop, they say it’s impossible without it crashing and freezing multiple times a day. I just want to make sure I’m keeping the new(old) laptop safe and in good working condition. TIA",
+                  "author_fullname": "t2_691i06kp",
+                  "saved": false,
+                  "mod_reason_title": null,
+                  "gilded": 0,
+                  "clicked": false,
+                  "title": "Refurbished T470 - Antivirus?",
+                  "link_flair_richtext": [
+                    {
+                      "e": "text",
+                      "t": "Question / Problem"
+                    }
+                  ],
+                  "subreddit_name_prefixed": "r/thinkpad",
+                  "hidden": false,
+                  "pwls": 6,
+                  "link_flair_css_class": "",
+                  "downs": 0,
+                  "thumbnail_height": null,
+                  "top_awarded_type": null,
+                  "hide_score": false,
+                  "name": "t3_sewu49",
+                  "quarantine": false,
+                  "link_flair_text_color": "light",
+                  "upvote_ratio": 0.78,
+                  "author_flair_background_color": null,
+                  "subreddit_type": "public",
+                  "ups": 5,
+                  "total_awards_received": 0,
+                  "media_embed": {},
+                  "thumbnail_width": null,
+                  "author_flair_template_id": null,
+                  "is_original_content": false,
+                  "user_reports": [],
+                  "secure_media": null,
+                  "is_reddit_media_domain": false,
+                  "is_meta": false,
+                  "category": null,
+                  "secure_media_embed": {},
+                  "link_flair_text": "Question / Problem",
+                  "can_mod_post": false,
+                  "score": 5,
+                  "approved_by": null,
+                  "is_created_from_ads_ui": false,
+                  "author_premium": false,
+                  "thumbnail": "self",
+                  "edited": false,
+                  "author_flair_css_class": null,
+                  "author_flair_richtext": [],
+                  "gildings": {},
+                  "content_categories": null,
+                  "is_self": true,
+                  "mod_note": null,
+                  "created": 1643393377,
+                  "link_flair_type": "richtext",
+                  "wls": 6,
+                  "removed_by_category": null,
+                  "banned_by": null,
+                  "author_flair_type": "text",
+                  "domain": "self.thinkpad",
+                  "allow_live_comments": false,
+                  "selftext_html": "<!-- SC_OFF --><div class=\"md\"><p>Hello, I just bought a refurbished T470 from Best Buy. I’ll be using it to connect remotely to my work desktop and also for my last semester of college. What antivirus do you all recommend? I’m seeing recommendations for Windows Defender but the posts are a bit old. Is that still a good one? Or should I install something like the Kaspersky antivirus? I have a MacBook Air and have never had any problems with it and have been so afraid of buying a PC. I’m not big on tech and am only switching bc my work’s IT dept can’t figure out how to get my Mac to remote connect to my desktop, they say it’s impossible without it crashing and freezing multiple times a day. I just want to make sure I’m keeping the new(old) laptop safe and in good working condition. TIA</p>\n</div><!-- SC_ON -->",
+                  "likes": null,
+                  "suggested_sort": null,
+                  "banned_at_utc": null,
+                  "view_count": null,
+                  "archived": false,
+                  "no_follow": false,
+                  "is_crosspostable": false,
+                  "pinned": false,
+                  "over_18": false,
+                  "all_awardings": [],
+                  "awarders": [],
+                  "media_only": false,
+                  "link_flair_template_id": "9d107568-c9ab-11e9-b5ce-0e567c8fae6c",
+                  "can_gild": false,
+                  "spoiler": false,
+                  "locked": false,
+                  "author_flair_text": null,
+                  "treatment_tags": [],
+                  "visited": false,
+                  "removed_by": null,
+                  "num_reports": null,
+                  "distinguished": null,
+                  "subreddit_id": "t5_2qvhj",
+                  "author_is_blocked": false,
+                  "mod_reason_by": null,
+                  "removal_reason": null,
+                  "link_flair_background_color": "#014980",
+                  "id": "sewu49",
+                  "is_robot_indexable": true,
+                  "report_reasons": null,
+                  "author": "alexislopez000",
+                  "discussion_type": null,
+                  "num_comments": 25,
+                  "send_replies": true,
+                  "whitelist_status": "all_ads",
+                  "contest_mode": false,
+                  "mod_reports": [],
+                  "author_patreon_flair": false,
+                  "author_flair_text_color": null,
+                  "permalink": "/r/thinkpad/comments/sewu49/refurbished_t470_antivirus/",
+                  "parent_whitelist_status": "all_ads",
+                  "stickied": false,
+                  "url": "https://www.reddit.com/r/thinkpad/comments/sewu49/refurbished_t470_antivirus/",
+                  "subreddit_subscribers": 134703,
+                  "created_utc": 1643393377,
+                  "num_crossposts": 0,
+                  "media": null,
+                  "is_video": false
+                }
+              }
+            ],
+            "before": null
+          }
+        }
+    headers:
+      Content-Type: "application/json; charset=UTF-8"
+    status:
+      code: 200
+      message: OK
+version: 1
