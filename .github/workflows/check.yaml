@@ -102,6 +102,7 @@ jobs:
               -e git \
               -e python-pip-whl \
               -e python3-bottle \
+              -e python3-build \
               -e python3-click \
               -e python3-cram \
               -e python3-fastkml \
