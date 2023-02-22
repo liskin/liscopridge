@@ -139,12 +139,12 @@ def kml_tiles(geometry, max_sq_geometry=None, individual: bool = False) -> str:
     d = kml.Document(ns, name="explorer tiles", styles=[style_normal, style_max_sq])
     k.append(d)
 
-    p = kml.Placemark(ns, styleUrl="#normal")
+    p = kml.Placemark(ns, style_url="#normal")
     p.geometry = geometry
     d.append(p)
 
     if max_sq_geometry:
-        p = kml.Placemark(ns, styleUrl="#max_sq")
+        p = kml.Placemark(ns, style_url="#max_sq")
         p.geometry = max_sq_geometry
         d.append(p)
 
@@ -166,10 +166,10 @@ def kml_netlink(uri: str) -> str:
             self._href = href
 
         def etree_element(self):
-            href = kml.etree.Element(ns + "href")
+            href = kml.config.etree.Element(ns + "href")
             href.text = self._href
 
-            link = kml.etree.Element(ns + "Link")
+            link = kml.config.etree.Element(ns + "Link")
             link.append(href)
 
             e = super().etree_element()
