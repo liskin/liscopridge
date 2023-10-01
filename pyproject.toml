@@ -59,6 +59,7 @@ test = [
     "boddle",
     "pytest",
     "pytest-recording",
+    "vcrpy >= 4.3.1",
     "webtest",
 ]
 
