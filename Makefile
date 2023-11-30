@@ -48,16 +48,29 @@ lint-isort: $(VENV_DONE)
 	$(VENV_PYTHON) -m isort --check $(LINT_SOURCES)
 
 .PHONY: test
-test: $(VENV_DONE)
+test: test-pytest test-cram
+
+.PHONY: test-pytest
+test-pytest: $(VENV_DONE)
 	$(VENV_PYTHON) -m pytest $(PYTEST_FLAGS) tests/
 
 .PHONY: readme
-readme: README.md $(wildcard src/liscopridge/app/*.md)
+readme: README.md
+	git diff --exit-code $^
 
-%.md: INTERACTIVE=$(shell [ -t 0 ] && echo --interactive)
-%.md: $(VENV_DONE) _phony
+.PHONY: test-cram
+test-cram: CRAM_INTERACTIVE=$(shell [ -t 0 ] && echo --interactive)
+test-cram: $(VENV_DONE)
 	PATH="$(CURDIR)/$(VENV)/bin:$$PATH" \
-	$(VENV_PYTHON) -m cram --indent=4 $(INTERACTIVE) $@
+	XDG_DATA_HOME=/home/user/.local/share \
+	XDG_CONFIG_HOME=/home/user/.config \
+	$(VENV_PYTHON) tests/cram-noescape.py --indent=4 --shell=/bin/bash $(CRAM_INTERACTIVE) \
+		$(wildcard tests/*.md tests/*/*.md tests/*/*/*.md)
+
+.PHONY: README.md
+README.md: test-cram
+	tests/include.py < $@ > $@.tmp
+	mv -f $@.tmp $@
 
 .PHONY: dist
 dist: $(VENV_DONE)
@@ -106,5 +119,3 @@ $(VENV_DONE): $(MAKEFILE_LIST) pyproject.toml
 	$(if $(VENV_USE_SYSTEM_SITE_PACKAGES),$(VENV_CREATE_SYSTEM_SITE_PACKAGES),$(VENV_CREATE))
 	$(VENV_PYTHON) -m pip install -e $(VENV_PIP_INSTALL)
 	touch $@
-
-.PHONY: _phony
