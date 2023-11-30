@@ -73,7 +73,7 @@ jobs:
           linters: pytest
           run: make test-pytest
       - name: cram, readme
-        run: make readme
+        run: make test-cram readme
       - name: check-wheel
         run: make check-wheel
 
