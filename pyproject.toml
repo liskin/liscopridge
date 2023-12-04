@@ -25,7 +25,6 @@ classifiers = [ # https://pypi.org/classifiers/
     "Programming Language :: Python :: 3.12",
     "Topic :: Utilities",
 ]
-urls = {Homepage = "https://github.com/liskin/liscopridge"}
 requires-python = "~= 3.8"
 dependencies = [
     "bottle",
@@ -61,6 +60,13 @@ test = [
     "vcrpy >= 4.3.1",
     "webtest",
 ]
+
+[project.urls]
+"Homepage" = "https://github.com/liskin/liscopridge"
+"Release Notes" = "https://github.com/liskin/liscopridge/releases"
+"Issues" = "https://github.com/liskin/liscopridge/issues"
+"CI" = "https://github.com/liskin/liscopridge/actions"
+"Donations (GitHub)" = "https://github.com/sponsors/liskin"
 
 [project.scripts]
 liscopridge = "liscopridge.server:main"
