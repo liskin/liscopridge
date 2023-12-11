@@ -128,10 +128,8 @@ def test_route_tiles_net_kml():
             <kml xmlns="http://www.opengis.net/kml/2.2">
               <Document>
                 <name>explorer tiles netlink</name>
-                <visibility>1</visibility>
                 <NetworkLink>
                   <name>explorer tiles</name>
-                  <visibility>1</visibility>
                   <Link>
                     <href>http://127.0.0.1/tiles.kml?share_link=https%3A%2F%2Fwww.statshunters.com%2Fshare%2Ftest&amp;types=InlineSkate+Ride</href>
                   </Link>
