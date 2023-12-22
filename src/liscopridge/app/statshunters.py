@@ -137,13 +137,13 @@ def kml_tiles(geometry, max_sq_geometry=None, individual: bool = False) -> str:
     d = kml.Document(ns, name="explorer tiles", styles=[style_normal, style_max_sq])
     k.append(d)
 
-    p = kml.Placemark(ns, geometry=geometry)
-    p.style_url = "#normal"
+    s = kml.StyleUrl(ns, id="normal")
+    p = kml.Placemark(ns, style_url=s, geometry=geometry)
     d.append(p)
 
     if max_sq_geometry:
-        p = kml.Placemark(ns, geometry=max_sq_geometry)
-        p.style_url = "#max_sq"
+        s = kml.StyleUrl(ns, id="max_sq")
+        p = kml.Placemark(ns, style_url=s, geometry=max_sq_geometry)
         d.append(p)
 
     return k.to_string(prettyprint=True)
