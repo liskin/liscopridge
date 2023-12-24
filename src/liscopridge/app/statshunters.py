@@ -12,18 +12,18 @@ from urllib.parse import urljoin
 
 import bottle  # type: ignore [import]
 import click
-from fastkml import geometry as kml_geometry  # type: ignore [import]
 from fastkml import kml  # type: ignore [import]
 from fastkml import styles as kml_styles  # type: ignore [import]
 import mercantile  # type: ignore [import]
 from mercantile import Tile  # type: ignore [import]
-import pygeoif  # type: ignore [import]
 import shapely.geometry  # type: ignore [import]
 import shapely.ops  # type: ignore [import]
 
 from .. import cache
+from ..hacks.fastkml import fix_shapely_GeometryCollection
 from ..util.geometry import polygon_split_holes
 
+fix_shapely_GeometryCollection()
 app = bottle.Bottle()
 
 
@@ -123,16 +123,6 @@ def tiles_geometry(tiles: Set[Tile], individual: bool = False):
     return geometry
 
 
-def kml_from_geometry(geometry):
-    geometry = pygeoif.shape(geometry)
-    if geometry.geom_type == "Polygon":
-        return kml_geometry.Polygon(geometry=geometry)
-    elif geometry.geom_type == "GeometryCollection":
-        return kml_geometry.MultiGeometry(geometry=geometry)
-    else:
-        raise ValueError(f"kml_from_geometry: {geometry.geom_type} not supported")
-
-
 def kml_tiles(geometry, max_sq_geometry=None, individual: bool = False) -> str:
     ns = '{http://www.opengis.net/kml/2.2}'
     k = kml.KML(ns)
@@ -149,11 +139,13 @@ def kml_tiles(geometry, max_sq_geometry=None, individual: bool = False) -> str:
     d = kml.Document(ns, name="explorer tiles", styles=[style_normal, style_max_sq])
     k.append(d)
 
-    p = kml.Placemark(ns, style_url="#normal", geometry=kml_from_geometry(geometry))
+    p = kml.Placemark(ns, styleUrl="#normal")
+    p.geometry = geometry
     d.append(p)
 
     if max_sq_geometry:
-        p = kml.Placemark(ns, style_url="#max_sq", geometry=kml_from_geometry(max_sq_geometry))
+        p = kml.Placemark(ns, styleUrl="#max_sq")
+        p.geometry = max_sq_geometry
         d.append(p)
 
     return k.to_string(prettyprint=True)
@@ -174,10 +166,10 @@ def kml_netlink(uri: str) -> str:
             self._href = href
 
         def etree_element(self):
-            href = kml.config.etree.Element(ns + "href")
+            href = kml.etree.Element(ns + "href")
             href.text = self._href
 
-            link = kml.config.etree.Element(ns + "Link")
+            link = kml.etree.Element(ns + "Link")
             link.append(href)
 
             e = super().etree_element()
