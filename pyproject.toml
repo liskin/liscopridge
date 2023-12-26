@@ -45,10 +45,10 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "build >= 0.7",
-    "cram",
     "flake8",
     "isort >= 5.0",
     "mypy >= 0.900",
+    "prysk == 0.16.0",
     "twine",
     "types-click",
     "types-requests",
@@ -77,7 +77,6 @@ dependencies-apt = [
     "python3-bottle",
     "python3-build",
     "python3-click",
-    "python3-cram",
     "python3-fastkml",
     "python3-flake8",
     "python3-importlib-metadata",
