@@ -10,6 +10,10 @@ from typing import Union
 from urllib.parse import urlencode
 from urllib.parse import urljoin
 
+# isort: off
+from ..hacks.fastkml import *  # noqa: F401, F403
+# isort: on
+
 import bottle  # type: ignore [import]
 import click
 from fastkml import kml  # type: ignore [import]
@@ -20,10 +24,8 @@ import shapely.geometry  # type: ignore [import]
 import shapely.ops  # type: ignore [import]
 
 from .. import cache
-from ..hacks.fastkml import fix_shapely_GeometryCollection
 from ..util.geometry import polygon_split_holes
 
-fix_shapely_GeometryCollection()
 app = bottle.Bottle()
 
 
