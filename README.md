@@ -46,7 +46,7 @@ pip install liscopridge
                        /home/user/.config/liscopridge/config.yaml]
       --config-sample  Show sample configuration file
       --help           Show this message and exit.
-<!-- end include -->
+<!-- end include tests/readme/help.md -->
 
 <!-- FIXME: example -->
 
@@ -60,4 +60,4 @@ Sample config file can be generated using the `--config-sample` flag:
 
 <!-- include tests/readme/config-sample.md -->
     $ liscopridge --config-sample
-<!-- end include -->
+<!-- end include tests/readme/config-sample.md -->
